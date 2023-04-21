@@ -2,7 +2,7 @@ import java.awt.Component;
 
 
 /**
- * This interface class represents a task type. All communication between individual task objects and the main application should be made using method specified here, or in the related interface TaskListener.
+ * This interface class represents a task type. All communication between individual task objects and the main application should be made using the method specified here, or in the related interface TaskListener.
  * 
  * This file licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons (CC) BY 4.0 license</a>.  
  * 

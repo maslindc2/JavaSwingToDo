@@ -25,7 +25,7 @@ public class HomeTask extends JPanel implements Task {
 	private JTextField text;
 	
 	/**
-	 * The non editable text label.
+	 * The non-editable text label.
 	 */
 	private JLabel textLabel;
 	
