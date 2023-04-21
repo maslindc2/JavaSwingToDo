@@ -23,8 +23,8 @@ public class ToDo implements TaskListener, ActionListener {
 	private JButton StudyTaskbutton = new JButton("New StudyTask");
 	private JButton HomeTaskbutton = new JButton("New HomeTask");
 	private JButton CustomTaskbutton = new JButton("New WorkTask");
-	private JButton sortByAlfButton = new JButton("Sorted Alfabetical");
-	private JButton sortByCompButton = new JButton("Sorterd Completed");
+	private JButton sortByAlfButton = new JButton("Sorted Alphabetical");
+	private JButton sortByCompButton = new JButton("Sorted Completed");
 	private JButton sortByTypeButton = new JButton("Sorted Type");
 	private Task homeTask, studyTask, customTask;
 	private JFrame frame;
@@ -36,7 +36,7 @@ public class ToDo implements TaskListener, ActionListener {
 	private ArrayList<Task> tasks = new ArrayList<Task>();
 	private ArrayList<Task> taskTypes = new ArrayList<Task>();
 	private ArrayList<Task> completedTasks = new ArrayList<Task>();
-	private Boolean completedBtnPressed = true;
+	private boolean completedBtnPressed = true;
 
 	ToDo() {
 		totalTasks = new JLabel();
@@ -89,7 +89,7 @@ public class ToDo implements TaskListener, ActionListener {
 
 			// this action listener is connected to the sortCompleted button. It removes all
 			// tasks, sorts them by completed and adds them back in to the GUI according to
-			// the sorted order. If the user presses this bnutton again the sorting is
+			// the sorted order. If the user presses this button again the sorting is
 			// reversed and added in to the GUI again so that the user sees the non
 			// completed tasks first.
 
@@ -114,7 +114,7 @@ public class ToDo implements TaskListener, ActionListener {
 		});
 		bottom.add(sortByAlfButton);
 		// this action listener is connected to the sortAlphabetical button. It removes
-		// all tasks, sorts them in an alphabetical order and adds them back in to the
+		// all tasks, sorts them in alphabetical order and adds them back in to the
 		// GUI.
 
 		sortByAlfButton.addActionListener(new ActionListener() {
@@ -134,7 +134,7 @@ public class ToDo implements TaskListener, ActionListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Exit when clicking on closing button (X)
 	}
 
-	// this function sorts the task in an alphabetical order. It takes no input.
+	// this function sorts the task in alphabetical order. It takes no input.
 	private void sortAlphabetically() {
 		Collections.sort(tasks, new TaskTextComparator());
 	}
@@ -222,6 +222,7 @@ public class ToDo implements TaskListener, ActionListener {
 	// this function is responsible for creating new tasks when the user wants to
 	// add a task.
 	public void actionPerformed(ActionEvent whichButton) {
+
 		if (whichButton.getSource().equals(HomeTaskbutton)) {
 			homeTask = new HomeTask();
 			tasks.add(homeTask);
@@ -256,5 +257,38 @@ public class ToDo implements TaskListener, ActionListener {
 	public void taskChanged(Task t) {
 
 	};
+
+
+	/**
+	 * Exposing the task buttons to pretend an action was performed
+	 * This is temporary this will be replaced by an automated framework
+	 */
+	public JButton getHomeTaskButton(){	return HomeTaskbutton;	}
+
+	public JButton getStudyTaskButton(){ return StudyTaskbutton; }
+
+	public JButton getCustomTaskButton(){ return StudyTaskbutton; }
+
+	public JButton getSortByAlfButton(){ return StudyTaskbutton; }
+
+	public JButton getSortByCompButton(){ return StudyTaskbutton; }
+
+	public JButton getSortByTypeButton(){ return StudyTaskbutton; }
+
+	/**
+	 * Exposing the Internal ArrayLists to see if the tasks are being created
+	 */
+
+	public ArrayList getTaskList(){ return tasks; }
+	public ArrayList getTaskType(){ return taskTypes; }
+
+	public ArrayList getCompletedTasks(){ return completedTasks; }
+
+	/**
+	 * Exposing counters and messages
+	 *
+	 */
+	public int getTotalCount(){ return total; }
+	public String getTotalTasksBottomText(){ return totalTasks.getText(); }
 
 }
