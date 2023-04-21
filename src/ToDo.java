@@ -236,16 +236,15 @@ public class ToDo implements TaskListener, ActionListener {
 			tasks.add(studyTask);
 			studyTask.setTaskListener(this);
 			taskCreated(studyTask);
-			tasks.add(studyTask);
 			this.total++;
 			this.totalTasks.setText("Total task completed: " + this.completed + "/" + this.total);
 			frame.validate();
 		}
 		if (whichButton.getSource().equals(CustomTaskbutton)) {
 			customTask = new CustomTask();
-			taskCreated(customTask); // Has to refresh everytime clicking new task
-			customTask.setTaskListener(this);
 			tasks.add(customTask);
+			customTask.setTaskListener(this);
+			taskCreated(customTask); // Has to refresh everytime clicking new task
 			this.total++;
 			this.totalTasks.setText("Total task completed: " + this.completed + "/" + this.total);
 			frame.validate();
@@ -266,13 +265,13 @@ public class ToDo implements TaskListener, ActionListener {
 
 	public JButton getStudyTaskButton(){ return StudyTaskbutton; }
 
-	public JButton getCustomTaskButton(){ return StudyTaskbutton; }
+	public JButton getCustomTaskButton(){ return CustomTaskbutton; }
 
-	public JButton getSortByAlfButton(){ return StudyTaskbutton; }
+	public JButton getSortByAlfButton(){ return sortByAlfButton; }
 
-	public JButton getSortByCompButton(){ return StudyTaskbutton; }
+	public JButton getSortByCompButton(){ return sortByCompButton; }
 
-	public JButton getSortByTypeButton(){ return StudyTaskbutton; }
+	public JButton getSortByTypeButton(){ return sortByTypeButton; }
 
 	/**
 	 * Exposing the Internal ArrayLists to see if the tasks are being created

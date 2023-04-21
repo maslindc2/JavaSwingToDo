@@ -38,6 +38,31 @@ public class ToDoTest
 
     // Text at the bottom displaying how many completed tasks should indicate 0/1 tasks completed
     assertEquals("Total task completed: 0/1", todo.getTotalTasksBottomText(), "createNewHomeTask_CompletedTasks_0/1");
+  }
+  @Test
+  public void createNewStudyTask_1StudyTaskCreated()
+  {
+    ToDo todo = new ToDo();
+    ActionEvent actionEventMock = mock(ActionEvent.class);
+    when(actionEventMock.getSource()).thenReturn(todo.getStudyTaskButton());
 
+    todo.actionPerformed(actionEventMock);
+
+    assertEquals(1, todo.getTotalCount(), "createNewStudyTask_TotalCount=1");
+    assertEquals(1, todo.getTaskList().size(), "createNewStudyTask_TaskListSize=1");
+    assertEquals("Total task completed: 0/1", todo.getTotalTasksBottomText(), "createNewStudyTask_CompletedTasks_0/1");
+  }
+  @Test
+  public void createNewCustomTask_1CustomTaskCreated()
+  {
+    ToDo todo = new ToDo();
+    ActionEvent actionEventMock = mock(ActionEvent.class);
+    when(actionEventMock.getSource()).thenReturn(todo.getCustomTaskButton());
+
+    todo.actionPerformed(actionEventMock);
+
+    assertEquals(1, todo.getTotalCount(), "createNewCustomTask_TotalCount=1");
+    assertEquals(1, todo.getTaskList().size(), "createNewCustomTask_TaskListSize=1");
+    assertEquals("Total task completed: 0/1", todo.getTotalTasksBottomText(), "createNewCustomTask_CompletedTasks_0/1");
   }
 }
