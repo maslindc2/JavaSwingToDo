@@ -22,7 +22,7 @@ public class CustomTask extends JPanel implements Task {
 	private JTextField text;
 
 	/**
-	 * The non editable text label.
+	 * The non-editable text label.
 	 */
 	private JLabel textLabel;
 
@@ -101,7 +101,7 @@ public class CustomTask extends JPanel implements Task {
 		return "Work";
 	}
 
-	// this function sets the task listener. It takes an object of type TaskListener
+	// This function sets the task listener. It takes an object of type TaskListener
 	// as input.
 	@Override
 	public void setTaskListener(TaskListener t) {
@@ -114,14 +114,14 @@ public class CustomTask extends JPanel implements Task {
 		return listener;
 	}
 
-	// this function returns the completed status of a task. It takes no input and
+	// This function returns the completed status of a task. It takes no input and
 	// returns a boolean.
 	@Override
 	public boolean isComplete() {
 		return completed.isSelected();
 	}
 
-	// this function returns the important status of a task. It takes no input and
+	// This function returns the important status of a task. It takes no input and
 	// returns a boolean.
 	public boolean isImportant() {
 		return important.isSelected();

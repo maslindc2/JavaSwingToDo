@@ -15,7 +15,7 @@ import javax.swing.JScrollPane;
 
 
 
-// Event source = Generates the event(for example button
+// Event source = Generates the event for button
 // Event listener object receives the event object and handles it
 // Event object describes the event
 public class ToDo implements TaskListener, ActionListener {
@@ -42,18 +42,18 @@ public class ToDo implements TaskListener, ActionListener {
 		totalTasks = new JLabel();
 		frame = new JFrame("Task management"); // Creates a frame
 		root = new JPanel();
-		// Top panel will hold the 3 different types of buttons.
+		// The Top panel will hold the 3 different types of buttons.
 		top = new JPanel();
-		// Mid panel will hold all the task after one of the create button is clicked
+		// Mid-panel will hold all the task after one of the created buttons is clicked
 		mid = new JPanel();
-		// Bottom panel will hold the sortings button, 3 different type of sorting
+		// Bottom panel will hold the sorting button, 3 different type of sorting
 		// buttons.
 		bottom = new JPanel();
-		// Root which will hold our 3 panels will go from a Y-axis, meaning top to down
+		// Root, which will hold our 3 panels, will go from a Y-axis, meaning top to down
 		root.setLayout(new BoxLayout(root, BoxLayout.Y_AXIS));
 		// Top layout will go from left to right because of X axis boxlayout
 		top.setLayout(new BoxLayout(top, BoxLayout.X_AXIS));
-		// Mid layout which hold the task created goes from up towards down.
+		// Mid-layout which hold the task created goes from up towards down.
 		mid.setLayout(new BoxLayout(mid, BoxLayout.Y_AXIS));
 		root.add(titleText);
 		top.add(HomeTaskbutton);
@@ -70,9 +70,8 @@ public class ToDo implements TaskListener, ActionListener {
 		CustomTaskbutton.addActionListener(this);
 		root.add(bottom);
 		bottom.add(sortByTypeButton);
-		// this action listener is connected to the sortType button. It removes all
-		// tasks, sorts them by type and adds them back in to the GUI according to the
-		// sorted order.
+		// This action listener is connected to the sortType button.
+		// It removes all tasks, sorts them by type and adds them back in to the GUI, according to the sorted order.
 		sortByTypeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mid.removeAll();
@@ -87,11 +86,11 @@ public class ToDo implements TaskListener, ActionListener {
 		bottom.add(sortByCompButton);
 		sortByCompButton.addActionListener(new ActionListener() {
 
-			// this action listener is connected to the sortCompleted button. It removes all
-			// tasks, sorts them by completed and adds them back in to the GUI according to
-			// the sorted order. If the user presses this button again the sorting is
-			// reversed and added in to the GUI again so that the user sees the non
-			// completed tasks first.
+			// This action listener is connected to the sortCompleted button.
+			// It removes all tasks, sorts them by completed and adds them back in to the GUI, according to
+			// the sorted order.
+			// If the user presses this button again, the sorting is
+			// reversed and added in to the GUI again so that the user sees the non-completed tasks first.
 
 			public void actionPerformed(ActionEvent e) {
 				if (completedBtnPressed) {
@@ -113,7 +112,7 @@ public class ToDo implements TaskListener, ActionListener {
 			}
 		});
 		bottom.add(sortByAlfButton);
-		// this action listener is connected to the sortAlphabetical button. It removes
+		// This action listener is connected to the sortAlphabetical button. It removes
 		// all tasks, sorts them in alphabetical order and adds them back in to the
 		// GUI.
 
@@ -134,7 +133,7 @@ public class ToDo implements TaskListener, ActionListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Exit when clicking on closing button (X)
 	}
 
-	// this function sorts the task in alphabetical order. It takes no input.
+	// This function sorts the task in alphabetical order. It takes no input.
 	private void sortAlphabetically() {
 		Collections.sort(tasks, new TaskTextComparator());
 	}
@@ -153,7 +152,7 @@ public class ToDo implements TaskListener, ActionListener {
 		}
 	}
 
-	// this function sorts tasks in a specific order based on type. It takes no
+	// This function sorts tasks in a specific order based on type. It takes no
 	// input
 	private void sortByType() {
 		String studyType = "Study";
@@ -189,8 +188,8 @@ public class ToDo implements TaskListener, ActionListener {
 		totalTasks.setText("Total task completed: " + this.completed + "/" + this.total);
 	}
 
-	// This is also connected to a check box, but instead of the status bar
-	// increasing it decreases when user unselects the check box. It takes an object
+	// This is also connected to a checkbox, but instead of the status bar
+	// increasing it decreases when user unselects the checkbox. It takes an object
 	// of Type Task as input.
 	@Override
 	public void taskUncompleted(Task t) {
@@ -198,7 +197,7 @@ public class ToDo implements TaskListener, ActionListener {
 		totalTasks.setText("Total task completed: " + this.completed + "/" + this.total);
 	}
 
-	// this function adds the Tasks to the GUI. It takes An object of type Task as
+	// This function adds the Tasks to the GUI. It takes An object of type Task as
 	// input.
 	@Override
 	public void taskCreated(Task t) {
@@ -206,7 +205,7 @@ public class ToDo implements TaskListener, ActionListener {
 		frame.validate();
 	}
 
-	// this function is responsible for removing a task from the GUI. It takes an
+	// This function is responsible for removing a task from the GUI. It takes an
 	// object of type Task as input.
 	@Override
 	public void taskRemoved(Task t) {
