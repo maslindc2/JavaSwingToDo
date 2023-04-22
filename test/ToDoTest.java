@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ToDoTest
 {
+
   @Test
   public void createNewHomeTask_1HomeTaskCreated()
   {
@@ -27,7 +28,7 @@ public class ToDoTest
     //Creating a mocked version of ActionEvent
     ActionEvent actionEventMock = mock(ActionEvent.class);
 
-    //When getSource is called return the actual HomeTaskButton object
+    //When getSource is called, return the actual HomeTaskButton object
     when(actionEventMock.getSource()).thenReturn(todo.getHomeTaskButton());
 
     // Call actionPerformed this is where tasks get created when the HomeTask, StudyTask, or CustomTask buttons are pressed
@@ -42,7 +43,6 @@ public class ToDoTest
     // Text at the bottom displaying how many completed tasks should indicate 0/1 tasks completed
     assertEquals("Total task completed: 0/1", todo.getTotalTasksBottomText(), "createNewHomeTask_CompletedTasks_0/1");
   }
-
 
   @Test
   public void createNewStudyTask_1StudyTaskCreated()
@@ -75,9 +75,11 @@ public class ToDoTest
   /**
    * Test creating a new task and remove it
    * NOTE: Removing from the arraylists was never setup by the original devs so any created task stays in the taskList
+   * I have added this feature to make it pass, we can remove it later if we are not supposed to fix functionality
+   * This is located in the method called taskRemoved on line 221
    */
   @Test
-  public void createNewStudyTaskAndRemoveIt()
+  public void createNewStudyTaskAndRemoveIt_TaskListSize0()
   {
     ToDo todo = new ToDo();
     ActionEvent actionEventMock = mock(ActionEvent.class);
@@ -100,7 +102,7 @@ public class ToDoTest
   }
 
   @Test
-  public void createNewHomeTaskAndRemoveIt()
+  public void createNewHomeTaskAndRemoveIt_TaskListSize0()
   {
     ToDo todo = new ToDo();
     ActionEvent actionEventMock = mock(ActionEvent.class);
@@ -119,12 +121,12 @@ public class ToDoTest
     assertEquals("Total task completed: 0/0", todo.getTotalTasksBottomText(), "createNewHomeTaskAndRemoveIt_CompletedTasks_0/0");
 
     // Commented out because calling remove doesn't remove the task from the list
-    // assertEquals(0, todo.getTaskList().size());
+    assertEquals(0, todo.getTaskList().size());
   }
 
 
   @Test
-  public void createNewCustomTaskAndRemoveIt()
+  public void createNewCustomTaskAndRemoveIt_TaskListSize0()
   {
     ToDo todo = new ToDo();
     ActionEvent actionEventMock = mock(ActionEvent.class);
@@ -143,6 +145,7 @@ public class ToDoTest
     assertEquals("Total task completed: 0/0", todo.getTotalTasksBottomText(), "createNewCustomTaskAndRemoveIt_CompletedTasks_0/0");
 
     // Commented out because calling remove doesn't remove the task from the list
-    // assertEquals(0, todo.getTaskList().size());
+    assertEquals(0, todo.getTaskList().size());
   }
+
 }

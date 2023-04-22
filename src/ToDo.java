@@ -214,6 +214,12 @@ public class ToDo implements TaskListener, ActionListener {
 		if (this.completed > 0) {
 			this.completed--;
 		}
+
+		// Find the task to remove then delete it from a task list
+		for(int i = 0; i < tasks.size(); i++)
+			if(t.equals(tasks.get(i)))
+				tasks.remove(i);
+
 		totalTasks.setText("Total task completed: " + this.completed + "/" + this.total);
 		frame.validate();
 	}
