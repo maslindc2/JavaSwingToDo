@@ -11,7 +11,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 
 
@@ -215,10 +214,17 @@ public class ToDo implements TaskListener, ActionListener {
 			this.completed--;
 		}
 
+		/**
+		 * TODO
+		 * This section is something I added to make the remove a task functionality work
+		 * this functionality was never setup by the original developers.
+		 * I'm not sure if we can add/fix functionality or not so in order to pass our tests I have added it in
+		 */
 		// Find the task to remove then delete it from a task list
-		for(int i = 0; i < tasks.size(); i++)
+		for(int i = 0; i < tasks.size(); i++) {
 			if(t.equals(tasks.get(i)))
 				tasks.remove(i);
+		}
 
 		totalTasks.setText("Total task completed: " + this.completed + "/" + this.total);
 		frame.validate();
@@ -264,8 +270,10 @@ public class ToDo implements TaskListener, ActionListener {
 
 
 	/**
-	 * Exposing the task buttons to pretend an action was performed
-	 * This is temporary this will be replaced by an automated framework
+	 * Exposing the task buttons to pretend an action was performed,
+	 * I haven't found a working UI test library yet, so we're accessing the JButtons and using mocking
+	 * to trick the ActionEvent functions into thinking a button was pressed.
+	 * We're also exposing private variables because we have no way of ensuring the code is working correctly on the inside.
 	 */
 	public JButton getHomeTaskButton(){	return HomeTaskbutton;	}
 
@@ -273,26 +281,38 @@ public class ToDo implements TaskListener, ActionListener {
 
 	public JButton getCustomTaskButton(){ return CustomTaskbutton; }
 
-	public JButton getSortByAlfButton(){ return sortByAlfButton; }
-
-	public JButton getSortByCompButton(){ return sortByCompButton; }
-
-	public JButton getSortByTypeButton(){ return sortByTypeButton; }
-
-	/**
-	 * Exposing the Internal ArrayLists to see if the tasks are being created
+	/*
+	 * TODO figure out how to trigger the sort by alphabetical, type, and isComplete buttons
+	 *  Since they are in a constructor this might be difficult.
 	 */
 
+	/**
+	 * Exposing the Task ArrayList
+	 * @return the list where a created task is stored
+	 */
 	public ArrayList getTaskList(){ return tasks; }
+
+	/**
+	 * Exposing the TaskType ArrayList which is used for sorting by type.
+	 * @return the list where tasks added to and sorted by their type
+	 */
 	public ArrayList getTaskType(){ return taskTypes; }
 
+	/**
+	 * Exposing the getCompletedTasks
+	 * @return the ArrayList of completed types used for sorting by completed tasks.
+	 */
 	public ArrayList getCompletedTasks(){ return completedTasks; }
 
 	/**
-	 * Exposing counters and messages
-	 *
+	 * Exposing getTotalCount used for keeping track task count
+	 * @return the number of tasks that have been created
 	 */
 	public int getTotalCount(){ return total; }
+	/**
+	 * Exposing getTotalTasksBottomText used for telling the user
+	 * @return String stating the total number of tasks created. This text is displayed to the user at the bottom of the program.
+	 */
 	public String getTotalTasksBottomText(){ return totalTasks.getText(); }
 
 }
