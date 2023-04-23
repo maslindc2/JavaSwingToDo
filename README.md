@@ -12,7 +12,7 @@ The projects file structure may look different than the source code.  The origin
 - Intellij Community or Ultimate. While other IDE's may work you might have problems with the folder structure. 
 - Testing requires Maven, JUnit and Mockito, Intellij should fetch these packages automatically using the pom.xml file.
 
-### Openning/Running the Project
+### Opening/Running the Project
 1. Open the project folder with Intellij.
 2. Mark the sources and test root folders in the Intellij project folder explorer.
 	1. To mark the sources root directory right click on the folder labeled "src", hover over the "Mark Directory As" option and click on "Sources Root"
