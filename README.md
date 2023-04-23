@@ -10,7 +10,7 @@ The projects file structure may look different than the source code.  The origin
 ### Dependencies
 - JDK 20 we recommend using Amazon Corretto 20, other JDKs may or may not work.  Amazon Corretto 20 is the only JDK we've tested.
 - Intellij Community or Ultimate. While other IDE's may work you might have problems with the folder structure. 
-- Testing requires Maven, JUnit and Mockito, Intellij should fetch these packages automatically using the pom.xml file.
+- Testing requires Maven, JUnit, and Mockito. Intellij should fetch these packages automatically using the pom.xml file.
 
 ### Opening/Running the Project
 1. Open the project folder with Intellij.
