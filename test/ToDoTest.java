@@ -1,11 +1,10 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.awt.event.ActionEvent;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import org.mockito.Mockito;
 
@@ -28,14 +27,13 @@ public class ToDoTest
     // this is where tasks get created when the HomeTask, StudyTask, or CustomTask buttons are pressed
     todo.actionPerformed(actionEventMock);
 
-    // Check the total count because it is a separate var that gets incremented when a task is created
-    assertEquals(1, todo.getTotalCount(), "createNewHomeTask_TotalCount=1");
-
-    // The arraylist size should be of size 1 since we have only created 1 task
-    assertEquals(1, todo.getTaskList().size(), "createNewHomeTask_TaskListSize=1");
-
-    // Text at the bottom displaying how many completed tasks should indicate 0/1 tasks completed
-    assertEquals("Total task completed: 0/1", todo.getTotalTasksBottomText(), "createNewHomeTask_CompletedTasks_0/1");
+    assertAll("Counters and the size of task arraylist should equal 1 for StudyTask",
+            // Check the total count because it is a separate var that gets incremented when a task is created
+            () -> assertEquals(1, todo.getTotalCount(), "createNewHomeTask_TotalCount=1"),
+            // The arraylist size should be of size 1 since we have only created 1 task
+            () -> assertEquals(1, todo.getTaskList().size(), "createNewHomeTask_TaskListSize=1"),
+            // Text at the bottom displaying how many completed tasks should indicate 0/1 tasks completed
+            () -> assertEquals("Total task completed: 0/1", todo.getTotalTasksBottomText(), "createNewHomeTask_CompletedTasks_0/1"));
   }
 
   @Test
@@ -47,9 +45,10 @@ public class ToDoTest
 
     todo.actionPerformed(actionEventMock);
 
-    assertEquals(1, todo.getTotalCount(), "createNewStudyTask_TotalCount=1");
-    assertEquals(1, todo.getTaskList().size(), "createNewStudyTask_TaskListSize=1");
-    assertEquals("Total task completed: 0/1", todo.getTotalTasksBottomText(), "createNewStudyTask_CompletedTasks_0/1");
+    assertAll("Counters and the size of task arraylist should equal 1 for StudyTask",
+            () -> assertEquals(1, todo.getTotalCount(), "createNewStudyTask_TotalCount=1"),
+            () -> assertEquals(1, todo.getTaskList().size(), "createNewStudyTask_TaskListSize=1"),
+            () -> assertEquals("Total task completed: 0/1", todo.getTotalTasksBottomText(), "createNewStudyTask_CompletedTasks_0/1"));
   }
   @Test
   public void createNewCustomTask_1CustomTaskCreated()
@@ -59,10 +58,13 @@ public class ToDoTest
     when(actionEventMock.getSource()).thenReturn(todo.getCustomTaskButton());
 
     todo.actionPerformed(actionEventMock);
-
-    assertEquals(1, todo.getTotalCount(), "createNewCustomTask_TotalCount=1");
-    assertEquals(1, todo.getTaskList().size(), "createNewCustomTask_TaskListSize=1");
-    assertEquals("Total task completed: 0/1", todo.getTotalTasksBottomText(), "createNewCustomTask_CompletedTasks_0/1");
+    assertAll("Counters and the size of task arraylist should equal 1 for CustomTask",
+          // Check that the total count variable = 1 since we created only one task
+          () -> assertEquals(1, todo.getTotalCount(), "createNewCustomTask_TotalCount=1"),
+          // Check that the task arraylist size = 1 since we created only one task
+          () -> assertEquals(1, todo.getTaskList().size(), "createNewCustomTask_TaskListSize=1"),
+          // Check that the text telling the user how many tasks exist shows only 1 task has been created
+          () -> assertEquals("Total task completed: 0/1", todo.getTotalTasksBottomText(), "createNewCustomTask_CompletedTasks_0/1"));
   }
 
 
@@ -86,12 +88,13 @@ public class ToDoTest
     //Call taskRemoved to removing a task from the Gui
     todo.taskRemoved(out);
 
-    //Check that the task was removed by checking the count
-    assertEquals(0, todo.getTotalCount());
-    //Check that the Gui updated showing 0/0 tasks
-    assertEquals("Total task completed: 0/0", todo.getTotalTasksBottomText(), "createNewStudyTaskAndRemoveIt_CompletedTasks_0/0");
-
-    assertEquals(0, todo.getTaskList().size());
+    assertAll("After creating and removing a task the counters and task list size should = 0",
+            //Check that the task was removed by checking the count
+            () -> assertEquals(0, todo.getTotalCount()),
+            //Check that the Gui updated showing 0/0 tasks
+            () -> assertEquals("Total task completed: 0/0", todo.getTotalTasksBottomText(), "createNewStudyTaskAndRemoveIt_CompletedTasks_0/0"),
+            // Check that the task has been removed from the task list
+            () -> assertEquals(0, todo.getTaskList().size()));
   }
 
   @Test
@@ -108,12 +111,13 @@ public class ToDoTest
     //Call taskRemoved to removing a task from the Gui
     todo.taskRemoved(out);
 
-    //Check that the task was removed by checking the count
-    assertEquals(0, todo.getTotalCount());
-    //Check that the Gui updated showing 0/0 tasks
-    assertEquals("Total task completed: 0/0", todo.getTotalTasksBottomText(), "createNewHomeTaskAndRemoveIt_CompletedTasks_0/0");
-
-    assertEquals(0, todo.getTaskList().size(), "createNewHomeTaskAndRemoveIt_TaskListSize=0");
+    assertAll("After creating and removing a task the counters and task list size should = 0",
+            //Check that the task was removed by checking the count
+            () -> assertEquals(0, todo.getTotalCount()),
+            //Check that the Gui updated showing 0/0 tasks
+            () -> assertEquals("Total task completed: 0/0", todo.getTotalTasksBottomText(), "createNewHomeTaskAndRemoveIt_CompletedTasks_0/0"),
+            // Check that the task has been removed from the task list
+            () -> assertEquals(0, todo.getTaskList().size(), "createNewHomeTaskAndRemoveIt_TaskListSize=0"));
   }
 
 
@@ -131,12 +135,13 @@ public class ToDoTest
     //Call taskRemoved to removing a task from the Gui
     todo.taskRemoved(out);
 
-    //Check that the task was removed by checking the count
-    assertEquals(0, todo.getTotalCount());
-    //Check that the Gui updated showing 0/0 tasks
-    assertEquals("Total task completed: 0/0", todo.getTotalTasksBottomText(), "createNewCustomTaskAndRemoveIt_CompletedTasks_0/0");
-
-    assertEquals(0, todo.getTaskList().size(), "createNewHomeTaskAndRemoveIt_TaskListSize=0");
+    assertAll("After creating and removing a task the counters and task list size should = 0",
+            //Check that the task was removed by checking the count
+            () -> assertEquals(0, todo.getTotalCount()),
+            //Check that the Gui updated showing 0/0 tasks
+            () -> assertEquals("Total task completed: 0/0", todo.getTotalTasksBottomText(), "createNewCustomTaskAndRemoveIt_CompletedTasks_0/0"),
+            // Check that the task has been removed from the task list
+            () -> assertEquals(0, todo.getTaskList().size(), "createNewHomeTaskAndRemoveIt_TaskListSize=0"));
   }
 
 }

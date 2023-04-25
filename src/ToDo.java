@@ -214,18 +214,6 @@ public class ToDo implements TaskListener, ActionListener {
 			this.completed--;
 		}
 
-		/**
-		 * TODO
-		 * This section is something I added to make the remove a task functionality work
-		 * this functionality was never setup by the original developers.
-		 * I'm not sure if we can add/fix functionality or not so in order to pass our tests I have added it in
-		 */
-		// Find the task to remove then delete it from a task list
-		for(int i = 0; i < tasks.size(); i++) {
-			if(t.equals(tasks.get(i)))
-				tasks.remove(i);
-		}
-
 		totalTasks.setText("Total task completed: " + this.completed + "/" + this.total);
 		frame.validate();
 	}
@@ -248,6 +236,7 @@ public class ToDo implements TaskListener, ActionListener {
 			tasks.add(studyTask);
 			studyTask.setTaskListener(this);
 			taskCreated(studyTask);
+			tasks.add(customTask);
 			this.total++;
 			this.totalTasks.setText("Total task completed: " + this.completed + "/" + this.total);
 			frame.validate();
@@ -257,6 +246,7 @@ public class ToDo implements TaskListener, ActionListener {
 			tasks.add(customTask);
 			customTask.setTaskListener(this);
 			taskCreated(customTask); // Has to refresh everytime clicking new task
+			tasks.add(customTask);
 			this.total++;
 			this.totalTasks.setText("Total task completed: " + this.completed + "/" + this.total);
 			frame.validate();
