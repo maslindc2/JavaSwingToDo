@@ -21,9 +21,7 @@ The projects file structure may look different than the source code.  The origin
 4. If you would to run the tests open the file ToDoTest.java located under the "test" folder. Simply run the test by selecting the Run option at the top of Intellij and click on Run "ToDoTest.java"
 
 ## What's left to test?
-Currently trying to figure out a UI test framework that will test the actual buttons.  The only way to do that currently is to use Robot which is in AWT.  
-
-This guide might be helpful to rewrite or use for future tasks [Automate Gui Tests for Swing](https://www.infoworld.com/article/2073056/automate-gui-tests-for-swing-applications.html)
+Currently trying to figure out a UI test framework that will test the actual buttons. We might just have to rely on Mocking and Robot from AWT to test. 
 
 ### Tests to Implement
 - [ ] Testing sorting methods
