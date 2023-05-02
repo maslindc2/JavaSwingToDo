@@ -45,7 +45,9 @@ public class StudyTask extends JPanel implements Task {
 	public StudyTask() {
 		super(new BorderLayout());
 		this.text = new JTextField("New task",20);
+		this.text.setName("studyTaskInputField");
 		this.textLabel = new JLabel();
+		this.textLabel.setName("studyTaskTextLabel");
 		this.textLabel.setVisible(false);
 		JPanel center = new JPanel();
 		center.add(text);
@@ -57,9 +59,11 @@ public class StudyTask extends JPanel implements Task {
 		this.textLabel.addMouseListener(inputListener);
 		
 		JButton remove = new JButton("Remove");
+		remove.setName("removeStudyTask");
 		add(remove,BorderLayout.EAST);
 		remove.addActionListener(inputListener);
-		
+
+		completed.setName("studyTaskIsCompleted");
 		add(completed,BorderLayout.WEST);
 		completed.addItemListener(inputListener);
 		

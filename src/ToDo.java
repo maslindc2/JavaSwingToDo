@@ -67,6 +67,16 @@ public class ToDo implements TaskListener, ActionListener {
 		HomeTaskbutton.addActionListener(this);
 		StudyTaskbutton.addActionListener(this);
 		CustomTaskbutton.addActionListener(this);
+		// Because the original devs didn't set the names of the inputs we have to do it
+		// If assertJ tests throw not able to find item it's probably because the name was never setup for it
+		// otherwise no testing framework could find the buttons
+		HomeTaskbutton.setName("HomeTaskbutton");
+		StudyTaskbutton.setName("StudyTaskbutton");
+		CustomTaskbutton.setName("CustomTaskbutton");
+		sortByAlfButton.setName("sortByAlfButton");
+		sortByCompButton.setName("sortByCompButton");
+		sortByTypeButton.setName("sortByTypeButton");
+		totalTasks.setName("totalTasksLabel");
 		root.add(bottom);
 		bottom.add(sortByTypeButton);
 		// This action listener is connected to the sortType button.
@@ -83,6 +93,7 @@ public class ToDo implements TaskListener, ActionListener {
 		});
 
 		bottom.add(sortByCompButton);
+
 		sortByCompButton.addActionListener(new ActionListener() {
 
 			// This action listener is connected to the sortCompleted button.
@@ -271,10 +282,11 @@ public class ToDo implements TaskListener, ActionListener {
 
 	public JButton getCustomTaskButton(){ return CustomTaskbutton; }
 
-	/*
-	 * TODO figure out how to trigger the sort by alphabetical, type, and isComplete buttons
-	 *  Since they are in a constructor this might be difficult.
-	 */
+	public JButton getSortByTypeButton(){return sortByTypeButton; }
+
+	public JButton getSortByAlfButton(){return sortByAlfButton;}
+
+	public JButton getSortByCompButton(){return sortByCompButton;}
 
 	/**
 	 * Exposing the Task ArrayList
@@ -305,4 +317,6 @@ public class ToDo implements TaskListener, ActionListener {
 	 */
 	public String getTotalTasksBottomText(){ return totalTasks.getText(); }
 
+
+	public JFrame getFrame(){return frame;}
 }
