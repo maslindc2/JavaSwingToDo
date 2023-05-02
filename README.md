@@ -19,3 +19,20 @@ The projects file structure may look different than the source code.  The origin
 	2. To mark the test directory root, right click on the folder labeled "test", hover over the "Mark Directory As" option and click on "Test Sources Root"
 3. If you would like to run the original project first, open the file ToDo under the "src" folder.  This file contains the main method for the project. Simply run this file by selecting the Run option at the top of Intellij and click on Run "ToDo.java"
 4. If you would to run the tests open the file ToDoTest.java located under the "test" folder. Simply run the test by selecting the Run option at the top of Intellij and click on Run "ToDoTest.java"
+
+## What's left to test?
+Currently trying to figure out a UI test framework that will test the actual buttons.  The only way to do that currently is to use Robot which is in AWT.  
+
+This guide might be helpful to rewrite or use for future tasks [Automate Gui Tests for Swing](https://www.infoworld.com/article/2073056/automate-gui-tests-for-swing-applications.html)
+
+### Tests to Implement
+- [ ] Testing sorting methods
+	- [ ] Test that the sorting methods work internally. Do this test for byType, sortAlphabetically, and sortByCompleted
+	- [ ] Test that the buttons call the correct sorting functions and that it sorts the tasks, check that the GUI shows the tasks have been sorted.
+	- [ ] Test if the text "Total task completed: 0/0" does not go negative when you create a task, remove it, and then call one of the sort methods. Hint this will cause the string to say "Total task completed: 0/-1"
+- [ ] Test isCompleted tasks
+	- [ ] Test if the button works
+	- [ ] Test if the task gets moved to completedTasks array list.  
+- [ ] Testing task naming can we change the name of a task.
+	- [ ] Test to see if the new name of the task gets saved into the arraylist or is it just saved purely on the GUI end.
+- [ ] Test if the checkbox Important for New WorkTask (uses the CustomTask class) sets the background color of the task to RED.
