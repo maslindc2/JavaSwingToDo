@@ -45,6 +45,7 @@ public class ToDo implements TaskListener, ActionListener {
 		top = new JPanel();
 		// Mid-panel will hold all the task after one of the created buttons is clicked
 		mid = new JPanel();
+		mid.setName("taskPanel");
 		// Bottom panel will hold the sorting button, 3 different type of sorting
 		// buttons.
 		bottom = new JPanel();
