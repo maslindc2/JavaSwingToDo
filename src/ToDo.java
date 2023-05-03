@@ -73,7 +73,7 @@ public class ToDo implements TaskListener, ActionListener {
 		// otherwise no testing framework could find the buttons
 		HomeTaskbutton.setName("HomeTaskbutton");
 		StudyTaskbutton.setName("StudyTaskbutton");
-		CustomTaskbutton.setName("CustomTaskbutton");
+		CustomTaskbutton.setName("WorkTaskbutton");
 		sortByAlfButton.setName("sortByAlfButton");
 		sortByCompButton.setName("sortByCompButton");
 		sortByTypeButton.setName("sortByTypeButton");

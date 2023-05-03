@@ -19,7 +19,7 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
      * Button names that assertJ uses to find specific buttons
      * New HomeTask button is named "HomeTaskbutton"
      * New StudyTask button is named "StudyTaskbutton"
-     * New CustomTask button is named "CustomTaskbutton"
+     * New CustomTask button is named "WorkTaskbutton"
      * Sort by Alphabetical Button is named "sortByAlfButton"
      * Sort by Completion Button is named "sortByCompButton"
      * Sort by Type button is named "sortByTypeButton"
@@ -54,12 +54,11 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         window.show();
     }
 
-
     @Test
     public void sortByTaskCompletion_createTwoTasksSetOneAsComplete_CompletedStudyTaskIsNowOnTop(){
 
         // Click on "New WorkTask" button
-        window.button("CustomTaskbutton").click();
+        window.button("WorkTaskbutton").click();
 
         // Click on "New StudyTask" button
         window.button("StudyTaskbutton").click();
@@ -78,5 +77,26 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
          */
         assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(StudyTask.class);
     }
+
+    @Test
+    public void markWorkTaskComplete_TaskCompletedUpdatesToShow1of1TaskComplete(){
+        window.button("WorkTaskbutton").click();
+        window.checkBox("workTaskIsCompleted").click();
+        window.label("totalTasksLabel").requireText("Total task completed: 1/1");
+    }
+    @Test
+    public void markStudyTaskComplete_TaskCompletedUpdatesToShow1of1TaskComplete(){
+        window.button("StudyTaskbutton").click();
+        window.checkBox("studyTaskIsCompleted").click();
+        window.label("totalTasksLabel").requireText("Total task completed: 1/1");
+    }
+    @Test
+    public void markHomeTaskComplete_TaskCompletedUpdatesToShow1of1TaskComplete(){
+        window.button("HomeTaskbutton").click();
+        window.checkBox("homeTaskIsCompleted").click();
+        window.label("totalTasksLabel").requireText("Total task completed: 1/1");
+    }
+
+
 
 }
