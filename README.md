@@ -27,15 +27,14 @@ In this section we have a checklist with all of the features we are planning on 
 To write tests for specific UI elements or buttons that you are not able to use a getter on, you have to use [assertJ](https://joel-costigliola.github.io/assertj/assertj-swing-getting-started.html). Automated UI tests are located in the file **ToDoGUITest.java** under the test folder. I have a comment in there with all of the names that assertJ uses to find specific elements. *Note this file will be under the UI-Tests branch until grading for TP2 is completed.*
 
 ### Tests to Implement
+- [ ] Test task naming, can we change the name of a task to say something else other than New Study/Home/Work Task
 - [ ] Testing sorting methods
-	- [ ] Test that the sorting methods work internally. Do this test for sort by type, sort alphabetically, and sort by completed.
 	- [x] Test the sort by completed button sorts completed tasks on the GUI. Should show a completed task moving to the top of the UI and the uncompleted tasks should be below the completed one. 
 	- [ ] Test the sort by alphabetically button sorts the tasks on the GUI in alphabetical order.
 	- [ ] Test the sort by type button sorts the tasks on the GUI by task type. 
 	- [ ] Test if the text "Total task completed: 0/0" does not go negative when you create a task, remove it, and then call one of the sort methods. Hint this will cause the string to say "Total task completed: 0/-1" this test should fail.
-- [x] Test isCompleted tasks
-	- [x] Test if the button marks the task completed should update the string on the bottom of the GUI to reflect the number of tasks completed.
-- [ ] Test task naming, can we change the name of a task?
-	- [ ] Test to see if the new name of the task gets saved into the arraylist or is it just saved purely on the GUI end.
+- [ ] Test Completed checkbox on tasks
+	- [x] Test if the checkbox marks the work task as completed should update the string on the bottom of the GUI to reflect the number of tasks completed.
+	- [ ] Test if the checkbox marks the home task as completed should update the string on the bottom of the GUI to reflect the number of tasks completed.
+	- [ ] Test if the checkbox marks the study task as completed should update the string on the bottom of the GUI to reflect the number of tasks completed.
 - [ ] Test if the checkbox Important on the Work Task sets the background color of the task to RED.
-
