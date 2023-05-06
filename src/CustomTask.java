@@ -48,8 +48,10 @@ public class CustomTask extends JPanel implements Task {
 	public CustomTask() {
 		super(new BorderLayout());
 		this.text = new JTextField("New task", 20);
+		this.text.setName("workTaskInputField");
 		this.textLabel = new JLabel();
 		this.textLabel.setVisible(false);
+		this.textLabel.setName("workTaskTextLabel");
 		final JPanel center = new JPanel();
 		center.add(text);
 		center.add(textLabel);
@@ -61,12 +63,15 @@ public class CustomTask extends JPanel implements Task {
 		this.textLabel.addMouseListener(inputListener);
 
 		JButton remove = new JButton("Remove");
+		remove.setName("removeWorkTask");
 		add(remove, BorderLayout.EAST);
 		remove.addActionListener(inputListener);
 
+		completed.setName("workTaskIsCompleted");
 		add(completed, BorderLayout.WEST);
 		completed.addItemListener(inputListener);
 
+		important.setName("workTaskIsImportant");
 		add(important, BorderLayout.SOUTH);
 		important.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {

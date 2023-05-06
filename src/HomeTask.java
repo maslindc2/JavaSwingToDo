@@ -45,7 +45,9 @@ public class HomeTask extends JPanel implements Task {
 	public HomeTask() {
 		super(new BorderLayout());
 		this.text = new JTextField("New task",20);
+		this.text.setName("homeTaskInputField");
 		this.textLabel = new JLabel();
+		this.textLabel.setName("homeTaskTextLabel");
 		this.textLabel.setVisible(false);
 		JPanel center = new JPanel();
 		center.add(text);
@@ -57,9 +59,11 @@ public class HomeTask extends JPanel implements Task {
 		this.textLabel.addMouseListener(inputListener);
 		
 		JButton remove = new JButton("Remove");
+		remove.setName("removeHomeTask");
 		add(remove,BorderLayout.EAST);
 		remove.addActionListener(inputListener);
-		
+
+		completed.setName("homeTaskIsCompleted");
 		add(completed,BorderLayout.WEST);
 		completed.addItemListener(inputListener);
 		

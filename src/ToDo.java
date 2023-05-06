@@ -45,6 +45,7 @@ public class ToDo implements TaskListener, ActionListener {
 		top = new JPanel();
 		// Mid-panel will hold all the task after one of the created buttons is clicked
 		mid = new JPanel();
+		mid.setName("taskPanel");
 		// Bottom panel will hold the sorting button, 3 different type of sorting
 		// buttons.
 		bottom = new JPanel();
@@ -67,6 +68,16 @@ public class ToDo implements TaskListener, ActionListener {
 		HomeTaskbutton.addActionListener(this);
 		StudyTaskbutton.addActionListener(this);
 		CustomTaskbutton.addActionListener(this);
+		// Because the original devs didn't set the names of the inputs we have to do it
+		// If assertJ tests throw not able to find item it's probably because the name was never setup for it
+		// otherwise no testing framework could find the buttons
+		HomeTaskbutton.setName("HomeTaskbutton");
+		StudyTaskbutton.setName("StudyTaskbutton");
+		CustomTaskbutton.setName("WorkTaskbutton");
+		sortByAlfButton.setName("sortByAlfButton");
+		sortByCompButton.setName("sortByCompButton");
+		sortByTypeButton.setName("sortByTypeButton");
+		totalTasks.setName("totalTasksLabel");
 		root.add(bottom);
 		bottom.add(sortByTypeButton);
 		// This action listener is connected to the sortType button.
@@ -83,6 +94,7 @@ public class ToDo implements TaskListener, ActionListener {
 		});
 
 		bottom.add(sortByCompButton);
+
 		sortByCompButton.addActionListener(new ActionListener() {
 
 			// This action listener is connected to the sortCompleted button.
@@ -161,10 +173,12 @@ public class ToDo implements TaskListener, ActionListener {
 			if (tasks.get(i).getTaskType().equals(homeType))
 				taskTypes.add(tasks.get(i));
 		}
+
 		for (int i = 0; i < tasks.size(); i++) {
 			if (tasks.get(i).getTaskType().equals(customType))
 				taskTypes.add(tasks.get(i));
 		}
+
 		for (int i = 0; i < tasks.size(); i++) {
 			if (tasks.get(i).getTaskType().equals(studyType))
 				taskTypes.add(tasks.get(i));
@@ -236,7 +250,6 @@ public class ToDo implements TaskListener, ActionListener {
 			tasks.add(studyTask);
 			studyTask.setTaskListener(this);
 			taskCreated(studyTask);
-			tasks.add(customTask);
 			this.total++;
 			this.totalTasks.setText("Total task completed: " + this.completed + "/" + this.total);
 			frame.validate();
@@ -246,7 +259,6 @@ public class ToDo implements TaskListener, ActionListener {
 			tasks.add(customTask);
 			customTask.setTaskListener(this);
 			taskCreated(customTask); // Has to refresh everytime clicking new task
-			tasks.add(customTask);
 			this.total++;
 			this.totalTasks.setText("Total task completed: " + this.completed + "/" + this.total);
 			frame.validate();
@@ -261,7 +273,7 @@ public class ToDo implements TaskListener, ActionListener {
 
 	/**
 	 * Exposing the task buttons to pretend an action was performed,
-	 * I haven't found a working UI test library yet, so we're accessing the JButtons and using mocking
+	 * I have not found a working UI test library yet, so we're accessing the JButtons and using mocking
 	 * to trick the ActionEvent functions into thinking a button was pressed.
 	 * We're also exposing private variables because we have no way of ensuring the code is working correctly on the inside.
 	 */
@@ -271,11 +283,6 @@ public class ToDo implements TaskListener, ActionListener {
 
 	public JButton getCustomTaskButton(){ return CustomTaskbutton; }
 
-	/*
-	 * TODO figure out how to trigger the sort by alphabetical, type, and isComplete buttons
-	 *  Since they are in a constructor this might be difficult.
-	 */
-
 	/**
 	 * Exposing the Task ArrayList
 	 * @return the list where a created task is stored
@@ -283,20 +290,8 @@ public class ToDo implements TaskListener, ActionListener {
 	public ArrayList getTaskList(){ return tasks; }
 
 	/**
-	 * Exposing the TaskType ArrayList which is used for sorting by type.
-	 * @return the list where tasks added to and sorted by their type
-	 */
-	public ArrayList getTaskType(){ return taskTypes; }
-
-	/**
-	 * Exposing the getCompletedTasks
-	 * @return the ArrayList of completed types used for sorting by completed tasks.
-	 */
-	public ArrayList getCompletedTasks(){ return completedTasks; }
-
-	/**
 	 * Exposing getTotalCount used for keeping track task count
-	 * @return the number of tasks that have been created
+	 * @return the number of tasks that've been created
 	 */
 	public int getTotalCount(){ return total; }
 	/**
@@ -305,4 +300,6 @@ public class ToDo implements TaskListener, ActionListener {
 	 */
 	public String getTotalTasksBottomText(){ return totalTasks.getText(); }
 
+
+	public JFrame getFrame(){return frame;}
 }
