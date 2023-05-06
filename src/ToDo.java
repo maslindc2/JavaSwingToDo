@@ -173,10 +173,12 @@ public class ToDo implements TaskListener, ActionListener {
 			if (tasks.get(i).getTaskType().equals(homeType))
 				taskTypes.add(tasks.get(i));
 		}
+
 		for (int i = 0; i < tasks.size(); i++) {
 			if (tasks.get(i).getTaskType().equals(customType))
 				taskTypes.add(tasks.get(i));
 		}
+
 		for (int i = 0; i < tasks.size(); i++) {
 			if (tasks.get(i).getTaskType().equals(studyType))
 				taskTypes.add(tasks.get(i));
@@ -248,7 +250,6 @@ public class ToDo implements TaskListener, ActionListener {
 			tasks.add(studyTask);
 			studyTask.setTaskListener(this);
 			taskCreated(studyTask);
-			tasks.add(customTask);
 			this.total++;
 			this.totalTasks.setText("Total task completed: " + this.completed + "/" + this.total);
 			frame.validate();
@@ -258,7 +259,6 @@ public class ToDo implements TaskListener, ActionListener {
 			tasks.add(customTask);
 			customTask.setTaskListener(this);
 			taskCreated(customTask); // Has to refresh everytime clicking new task
-			tasks.add(customTask);
 			this.total++;
 			this.totalTasks.setText("Total task completed: " + this.completed + "/" + this.total);
 			frame.validate();
@@ -273,7 +273,7 @@ public class ToDo implements TaskListener, ActionListener {
 
 	/**
 	 * Exposing the task buttons to pretend an action was performed,
-	 * I haven't found a working UI test library yet, so we're accessing the JButtons and using mocking
+	 * I have not found a working UI test library yet, so we're accessing the JButtons and using mocking
 	 * to trick the ActionEvent functions into thinking a button was pressed.
 	 * We're also exposing private variables because we have no way of ensuring the code is working correctly on the inside.
 	 */
@@ -283,12 +283,6 @@ public class ToDo implements TaskListener, ActionListener {
 
 	public JButton getCustomTaskButton(){ return CustomTaskbutton; }
 
-	public JButton getSortByTypeButton(){return sortByTypeButton; }
-
-	public JButton getSortByAlfButton(){return sortByAlfButton;}
-
-	public JButton getSortByCompButton(){return sortByCompButton;}
-
 	/**
 	 * Exposing the Task ArrayList
 	 * @return the list where a created task is stored
@@ -296,20 +290,8 @@ public class ToDo implements TaskListener, ActionListener {
 	public ArrayList getTaskList(){ return tasks; }
 
 	/**
-	 * Exposing the TaskType ArrayList which is used for sorting by type.
-	 * @return the list where tasks added to and sorted by their type
-	 */
-	public ArrayList getTaskType(){ return taskTypes; }
-
-	/**
-	 * Exposing the getCompletedTasks
-	 * @return the ArrayList of completed types used for sorting by completed tasks.
-	 */
-	public ArrayList getCompletedTasks(){ return completedTasks; }
-
-	/**
 	 * Exposing getTotalCount used for keeping track task count
-	 * @return the number of tasks that have been created
+	 * @return the number of tasks that've been created
 	 */
 	public int getTotalCount(){ return total; }
 	/**
