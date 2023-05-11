@@ -85,6 +85,20 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         window.label("totalTasksLabel").requireText("Total task completed: 1/1");
     }
 
+    @Test
+    public void markHomeTaskComplete_TaskCompletedUpdatesToShow1of1TaskComplete(){
+        window.button("HomeTaskbutton").click();
+        window.checkBox("homeTaskIsCompleted").click();
+        window.label("totalTasksLabel").requireText("Total task completed: 1/1");
+    }
+
+    @Test
+    public void markStudyTaskComplete_TaskCompletedUpdatesToShow1of1TaskComplete(){
+        window.button("StudyTaskbutton").click();
+        window.checkBox("studyTaskIsCompleted").click();
+        window.label("totalTasksLabel").requireText("Total task completed: 1/1");
+    }
+
 
 
 }
