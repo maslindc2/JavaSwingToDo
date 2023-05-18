@@ -44,7 +44,7 @@ public class StudyTask extends JPanel implements Task {
 	 */
 	public StudyTask() {
 		super(new BorderLayout());
-		this.text = new JTextField("New task",20);
+		this.text = new JTextField("New study task",20);
 		this.text.setName("studyTaskInputField");
 		this.textLabel = new JLabel();
 		this.textLabel.setName("studyTaskTextLabel");

@@ -45,11 +45,65 @@ public class ToDoTest
 
     todo.actionPerformed(actionEventMock);
 
+    StudyTask studyTask = (StudyTask) todo.getTaskList().get(0);
+    System.out.println("sdfdsf"+studyTask.getText());
     assertAll("Counters and the size of task arraylist should equal 1 for StudyTask",
             () -> assertEquals(1, todo.getTotalCount(), "createNewStudyTask_TotalCount=1"),
             () -> assertEquals(1, todo.getTaskList().size(), "createNewStudyTask_TaskListSize=1"),
             () -> assertEquals("Total task completed: 0/1", todo.getTotalTasksBottomText(), "createNewStudyTask_CompletedTasks_0/1"));
   }
+
+  @Test
+  public void createNewStudyTask_getTaskText()
+  {
+    ToDo todo = new ToDo();
+    ActionEvent actionEventMock = mock(ActionEvent.class);
+    when(actionEventMock.getSource()).thenReturn(todo.getStudyTaskButton());
+
+    todo.actionPerformed(actionEventMock);
+
+    assertAll("Initialize task with name new study task",
+            () -> assertEquals("New study task", ((StudyTask) todo.getTaskList().get(0)).getText()));
+  }
+
+  @Test
+  public void create2Tasks_taskTextComparatorSuccessTest()
+  {
+    ToDo todo = new ToDo();
+
+    ActionEvent actionEventMock = mock(ActionEvent.class);
+    when(actionEventMock.getSource()).thenReturn(todo.getStudyTaskButton());
+    todo.actionPerformed(actionEventMock);
+
+    when(actionEventMock.getSource()).thenReturn(todo.getStudyTaskButton());
+    todo.actionPerformed(actionEventMock);
+
+    TaskTextComparator taskTextComparator = new TaskTextComparator();
+    int result = taskTextComparator.compare(todo.getTaskList().get(0),todo.getTaskList().get(1));
+
+    assertAll("Initialize task with name new study task",
+            () -> assertEquals(0, result));
+  }
+
+  @Test
+  public void create2Tasks_taskTextComparatorFailureTest()
+  {
+    ToDo todo = new ToDo();
+
+    ActionEvent actionEventMock = mock(ActionEvent.class);
+    when(actionEventMock.getSource()).thenReturn(todo.getStudyTaskButton());
+    todo.actionPerformed(actionEventMock);
+
+    when(actionEventMock.getSource()).thenReturn(todo.getCustomTaskButton());
+    todo.actionPerformed(actionEventMock);
+
+    TaskTextComparator taskTextComparator = new TaskTextComparator();
+    int result = taskTextComparator.compare(todo.getTaskList().get(0),todo.getTaskList().get(1));
+
+    assertAll("Compare two tasks",
+            () -> assertNotEquals(0, result));
+  }
+
   @Test
   public void createNewCustomTask_1CustomTaskCreated()
   {
@@ -78,6 +132,7 @@ public class ToDoTest
   public void createNewStudyTaskAndRemoveIt_TaskListSize0()
   {
     ToDo todo = new ToDo();
+
     ActionEvent actionEventMock = mock(ActionEvent.class);
     when(actionEventMock.getSource()).thenReturn(todo.getStudyTaskButton());
 

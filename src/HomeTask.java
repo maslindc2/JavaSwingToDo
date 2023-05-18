@@ -44,7 +44,7 @@ public class HomeTask extends JPanel implements Task {
 	 */
 	public HomeTask() {
 		super(new BorderLayout());
-		this.text = new JTextField("New task",20);
+		this.text = new JTextField("New home task",20);
 		this.text.setName("homeTaskInputField");
 		this.textLabel = new JLabel();
 		this.textLabel.setName("homeTaskTextLabel");

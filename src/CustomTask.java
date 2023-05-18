@@ -47,7 +47,7 @@ public class CustomTask extends JPanel implements Task {
 	 */
 	public CustomTask() {
 		super(new BorderLayout());
-		this.text = new JTextField("New task", 20);
+		this.text = new JTextField("New custom task", 20);
 		this.text.setName("workTaskInputField");
 		this.textLabel = new JLabel();
 		this.textLabel.setVisible(false);
