@@ -1,4 +1,6 @@
 
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.StringAssert;
 import org.assertj.swing.edt.GuiActionRunner;
 import org.assertj.swing.fixture.FrameFixture;
 import static org.assertj.swing.assertions.Assertions.assertThat;
@@ -79,6 +81,56 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
     }
 
     @Test
+    public void sortByTaskType_createThreeTasksSortByType_NoChangeInTaskOrder(){
+
+        window.button("HomeTaskbutton").click();
+        // Click on "New WorkTask" button
+        window.button("WorkTaskbutton").click();
+        // Click on "New StudyTask" button
+        window.button("StudyTaskbutton").click();
+
+
+        // Click on the "Sorted Completed" button
+        window.button("sortByTypeButton").click();
+
+        SoftAssertions softly = new SoftAssertions();
+        softly.assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(HomeTask.class);
+        softly.assertThat(window.panel("taskPanel").target().getComponents()[1]).isInstanceOf(CustomTask.class);
+        softly.assertThat(window.panel("taskPanel").target().getComponents()[2]).isInstanceOf(StudyTask.class);
+        softly.assertAll();
+    }
+
+    @Test
+    public void sortByTaskType_createTwoStudyTasksOneWorkTask_WorkTaskOnTop(){
+
+        window.button("StudyTaskbutton").click();
+        // Click on "New WorkTask" button
+        window.button("StudyTaskbutton").click();
+        // Click on "New StudyTask" button
+        window.button("WorkTaskbutton").click();
+
+        // Click on the "Sorted Completed" button
+        window.button("sortByTypeButton").click();
+
+        SoftAssertions softly = new SoftAssertions();
+        softly.assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(CustomTask.class);
+        softly.assertThat(window.panel("taskPanel").target().getComponents()[1]).isInstanceOf(StudyTask.class);
+        softly.assertThat(window.panel("taskPanel").target().getComponents()[2]).isInstanceOf(StudyTask.class);
+        softly.assertAll();
+    }
+
+    // This test focuses on a failure we found during exploratory testing
+    // where a deleted task would reappear after sorting
+    @Test
+    public void createOneTaskRemoveItSortByCompleted_NoTasksShouldRenderedOnTheGUI(){
+        window.button("StudyTaskbutton").click();
+        window.button("removeStudyTask").click();
+        window.button("sortByCompButton").click();
+
+        // assert that the taskPanel does not contain any rendered components
+        assertThat(window.panel("taskPanel").target().getComponents().length).isEqualTo(0);
+    }
+    @Test
     public void markWorkTaskComplete_TaskCompletedUpdatesToShow1of1TaskComplete(){
         window.button("WorkTaskbutton").click();
         window.checkBox("workTaskIsCompleted").click();
@@ -98,7 +150,4 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         window.checkBox("studyTaskIsCompleted").click();
         window.label("totalTasksLabel").requireText("Total task completed: 1/1");
     }
-
-
-
 }
