@@ -31,7 +31,7 @@ To write tests for specific UI elements or buttons that you are not able to use 
 - [ ] Testing sorting methods
 	- [x] Test the sort by completed button sorts completed tasks on the GUI. Should show a completed task moving to the top of the UI and the uncompleted tasks should be below the completed one. 
 	- [ ] Test the sort by alphabetically button sorts the tasks on the GUI in alphabetical order.
-	- [ ] Test the sort by type button sorts the tasks on the GUI by task type. 
+	- [x] Test the sort by type button sorts the tasks on the GUI by task type. 
 	- [ ] Test if the text "Total task completed: 0/0" does not go negative when you create a task, remove it, and then call one of the sort methods. Hint this will cause the string to say "Total task completed: 0/-1" this test should fail.
 - [x] Test Completed checkbox on tasks
 	- [x] Test if the checkbox marks the work task as completed should update the string on the bottom of the GUI to reflect the number of tasks completed.
