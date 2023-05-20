@@ -37,4 +37,4 @@ To write tests for specific UI elements or buttons that you are not able to use 
 	- [x] Test if the checkbox marks the work task as completed should update the string on the bottom of the GUI to reflect the number of tasks completed.
 	- [x] Test if the checkbox marks the home task as completed should update the string on the bottom of the GUI to reflect the number of tasks completed.
 	- [x] Test if the checkbox marks the study task as completed should update the string on the bottom of the GUI to reflect the number of tasks completed.
-- [ ] Test if the checkbox Important on the Work Task sets the background color of the task to RED.
+- [x] Test if the checkbox Important on the Work Task sets the background color of the task to RED.
