@@ -6,8 +6,9 @@ import org.assertj.swing.fixture.FrameFixture;
 import static org.assertj.swing.assertions.Assertions.assertThat;
 import org.assertj.swing.junit.testcase.AssertJSwingJUnitTestCase;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 
-
+import java.awt.Color;
 
 
 public class ToDoGUITest extends AssertJSwingJUnitTestCase {
@@ -79,7 +80,27 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
          */
         assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(StudyTask.class);
     }
+    @Test
+    public void createTwoTasks_FirstTaskComplete_SortByCompleted_UnMarkCompletion_ReverseSorting(){
+        // Click on "New StudyTask" button
+        window.button("StudyTaskbutton").click();
 
+        // Click on "New WorkTask" button
+        window.button("HomeTaskbutton").click();
+
+        // Click on the checkbox in Study task to mark it complete
+        window.checkBox("homeTaskIsCompleted").click();
+        // Click on the "Sorted Completed" button
+        window.button("sortByCompButton").click();
+
+        //Un-mark the task as completed
+        window.checkBox("homeTaskIsCompleted").click();
+        //Sort by completed
+        window.button("sortByCompButton").click();
+        //Task order should return to its original state
+        assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(CustomTask.class);
+
+    }
     @Test
     public void sortByTaskType_createThreeTasksSortByType_NoChangeInTaskOrder(){
 
@@ -93,11 +114,11 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         // Click on the "Sorted Completed" button
         window.button("sortByTypeButton").click();
 
-        SoftAssertions softly = new SoftAssertions();
-        softly.assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(HomeTask.class);
-        softly.assertThat(window.panel("taskPanel").target().getComponents()[1]).isInstanceOf(CustomTask.class);
-        softly.assertThat(window.panel("taskPanel").target().getComponents()[2]).isInstanceOf(StudyTask.class);
-        softly.assertAll();
+        SoftAssertions.assertSoftly(softly -> {
+            softly.assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(HomeTask.class);
+            softly.assertThat(window.panel("taskPanel").target().getComponents()[1]).isInstanceOf(CustomTask.class);
+            softly.assertThat(window.panel("taskPanel").target().getComponents()[2]).isInstanceOf(StudyTask.class);
+        });
     }
 
     @Test
@@ -112,11 +133,11 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         // Click on the "Sorted Completed" button
         window.button("sortByTypeButton").click();
 
-        SoftAssertions softly = new SoftAssertions();
-        softly.assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(CustomTask.class);
-        softly.assertThat(window.panel("taskPanel").target().getComponents()[1]).isInstanceOf(StudyTask.class);
-        softly.assertThat(window.panel("taskPanel").target().getComponents()[2]).isInstanceOf(StudyTask.class);
-        softly.assertAll();
+        SoftAssertions.assertSoftly(softly -> {
+            softly.assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(CustomTask.class);
+            softly.assertThat(window.panel("taskPanel").target().getComponents()[1]).isInstanceOf(StudyTask.class);
+            softly.assertThat(window.panel("taskPanel").target().getComponents()[2]).isInstanceOf(StudyTask.class);
+        });
     }
 
     // This test focuses on a failure we found during exploratory testing
@@ -130,6 +151,57 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         // assert that the taskPanel does not contain any rendered components
         assertThat(window.panel("taskPanel").target().getComponents().length).isEqualTo(0);
     }
+    @Test
+    public void createAndSortTasksAlphabetically_WorkTaskOnTopStudySecondHomeThird(){
+        window.button("HomeTaskbutton").click();
+        window.button("StudyTaskbutton").click();
+        window.button("WorkTaskbutton").click();
+
+        window.textBox("homeTaskInputField").setText("C");
+        window.textBox("studyTaskInputField").setText("B");
+        window.textBox("workTaskInputField").setText("A");
+
+        window.button("sortByAlfButton").click();
+
+        SoftAssertions softly = new SoftAssertions();
+        softly.assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(CustomTask.class);
+        softly.assertThat(window.panel("taskPanel").target().getComponents()[1]).isInstanceOf(StudyTask.class);
+        softly.assertThat(window.panel("taskPanel").target().getComponents()[2]).isInstanceOf(HomeTask.class);
+    }
+    @Test
+    public void createAndSortTasksAlphabetically_NoChangeInOrder(){
+        window.button("WorkTaskbutton").click();
+        window.button("StudyTaskbutton").click();
+        window.button("HomeTaskbutton").click();
+
+        window.textBox("workTaskInputField").setText("A");
+        window.textBox("studyTaskInputField").setText("B");
+        window.textBox("homeTaskInputField").setText("C");
+
+        window.button("sortByAlfButton").click();
+
+        SoftAssertions softly = new SoftAssertions();
+        softly.assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(CustomTask.class);
+        softly.assertThat(window.panel("taskPanel").target().getComponents()[1]).isInstanceOf(StudyTask.class);
+        softly.assertThat(window.panel("taskPanel").target().getComponents()[2]).isInstanceOf(HomeTask.class);
+    }
+    public void createThreeTasksAndNameUsingALetterSortByAlphabetical_TasksAreSortedAlphabetically(){
+        window.button("HomeTaskbutton").click();
+        window.button("StudyTaskbutton").click();
+        window.button("WorkTaskbutton").click();
+
+        window.textBox("homeTaskInputField").setText("C");
+        window.textBox("studyTaskInputField").setText("B");
+        window.textBox("workTaskInputField").setText("A");
+
+        window.button("sortByAlfButton").click();
+
+        SoftAssertions softly = new SoftAssertions();
+        softly.assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(CustomTask.class);
+        softly.assertThat(window.panel("taskPanel").target().getComponents()[1]).isInstanceOf(StudyTask.class);
+        softly.assertThat(window.panel("taskPanel").target().getComponents()[2]).isInstanceOf(HomeTask.class);
+    }
+
     @Test
     public void markWorkTaskComplete_TaskCompletedUpdatesToShow1of1TaskComplete(){
         window.button("WorkTaskbutton").click();
@@ -152,9 +224,18 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
     }
 
     @Test
-    public void checkBoxOnWorkTask_SetBackgroundColorOfTaskToRed(){
+    public void checkBoxOnWorkTask_SetBackgroundColorOfTaskToRed() {
         window.button("WorkTaskbutton").click();
         window.checkBox("workTaskIsImportant").click();
         window.background().target().getRed();
+    }
+
+    @Test
+    public void markWorkTaskImportant_WorkTaskBackgroundRed_UnMarkImportant_BackgroundReturnsToNormal(){
+        window.button("WorkTaskbutton").click();
+        window.checkBox("workTaskIsImportant").click();
+        assertThat(window.panel("taskPanel").target().getComponents()[0].getBackground()).isEqualTo(Color.red);
+        window.checkBox("workTaskIsImportant").click();
+        assertThat(window.panel("taskPanel").target().getComponents()[0].getBackground().getRGB()).isEqualTo(window.background().target().getRGB());
     }
 }

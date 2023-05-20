@@ -187,9 +187,7 @@ public class ToDo implements TaskListener, ActionListener {
 	}
 
 	public static void main(String[] args) {
-
 		ToDo t = new ToDo();
-
 	}
 
 	// This is connected to a checkbox where if the user selects it, The completed
@@ -273,8 +271,7 @@ public class ToDo implements TaskListener, ActionListener {
 
 	/**
 	 * Exposing the task buttons to pretend an action was performed,
-	 * I have not found a working UI test library yet, so we're accessing the JButtons and using mocking
-	 * to trick the ActionEvent functions into thinking a button was pressed.
+	 * accessing the JButtons and using mocking to trick the ActionEvent functions into thinking a button was pressed.
 	 * We're also exposing private variables because we have no way of ensuring the code is working correctly on the inside.
 	 */
 	public JButton getHomeTaskButton(){	return HomeTaskbutton;	}
