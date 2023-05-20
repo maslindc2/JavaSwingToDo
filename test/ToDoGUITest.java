@@ -150,4 +150,11 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         window.checkBox("studyTaskIsCompleted").click();
         window.label("totalTasksLabel").requireText("Total task completed: 1/1");
     }
+
+    @Test
+    public void checkBoxOnWorkTask_SetBackgroundColorOfTaskToRed(){
+        window.button("WorkTaskbutton").click();
+        window.checkBox("workTaskIsImportant").click();
+        window.background().target().getRed();
+    }
 }
