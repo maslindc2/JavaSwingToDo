@@ -65,6 +65,31 @@ public class ToDoTest
     assertAll("Initialize task with name new study task",
             () -> assertEquals("New study task", ((StudyTask) todo.getTaskList().get(0)).getText()));
   }
+  @Test
+  public void createNewHomeTask_getTaskText()
+  {
+    ToDo todo = new ToDo();
+    ActionEvent actionEventMock = mock(ActionEvent.class);
+    when(actionEventMock.getSource()).thenReturn(todo.getHomeTaskButton());
+
+    todo.actionPerformed(actionEventMock);
+
+    assertAll("Initialize task with name new home task",
+            () -> assertEquals("New home task", ((HomeTask) todo.getTaskList().get(0)).getText()));
+  }
+
+  @Test
+  public void createNewCustomTask_getTaskText()
+  {
+    ToDo todo = new ToDo();
+    ActionEvent actionEventMock = mock(ActionEvent.class);
+    when(actionEventMock.getSource()).thenReturn(todo.getCustomTaskButton());
+
+    todo.actionPerformed(actionEventMock);
+
+    assertAll("Initialize task with name new custom task",
+            () -> assertEquals("New custom task", ((CustomTask) todo.getTaskList().get(0)).getText()));
+  }
 
   @Test
   public void create2Tasks_taskTextComparatorSuccessTest()
