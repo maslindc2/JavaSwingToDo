@@ -24,7 +24,7 @@ The projects file structure may look different than the source code.  The origin
 In this section we have a checklist with all of the features we are planning on testing for internal unit tests and UI testing.
 
 ### How do we write automated UI tests?
-To write tests for specific UI elements or buttons that you are not able to use a getter on, you have to use [assertJ](https://joel-costigliola.github.io/assertj/assertj-swing-getting-started.html). Automated UI tests are located in the file **ToDoGUITest.java** under the test folder. I have a comment in there with all of the names that assertJ uses to find specific elements. *Note this file will be under the UI-Tests branch until grading for TP2 is completed.*
+To write tests for specific UI elements or buttons that you are not able to use a getter on, you have to use [assertJ](https://joel-costigliola.github.io/assertj/assertj-swing-getting-started.html). Automated UI tests are located in the file **ToDoGUITest.java** under the test folder. I have a comment in there with all of the names that assertJ uses to find specific elements. 
 
 ### Tests to Implement
 - [x] Test task naming, can we change the name of a task to say something else other than New Study/Home/Work Task
