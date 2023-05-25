@@ -1,3 +1,4 @@
+package com.team4.demo.app;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -10,14 +11,14 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 /**
- * Implements a simple study task type, following the Task.java interface class.
+ * Implements a simple home task type, following the Task.java interface class.
  *  
  * This file licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons (CC) BY 4.0 license</a>.
  * 
  * @author Dr. Erik Billing, University of Skovde
  *
  */
-public class StudyTask extends JPanel implements Task {
+public class HomeTask extends JPanel implements Task {
 
 	/**
 	 * The editable text field. 
@@ -42,12 +43,12 @@ public class StudyTask extends JPanel implements Task {
 	/**
 	 * This is the constructor for the task, initiating the GUI component for the task. Several listeners are used to react to various events in the GUI.  
 	 */
-	public StudyTask() {
+	public HomeTask() {
 		super(new BorderLayout());
-		this.text = new JTextField("New study task",20);
-		this.text.setName("studyTaskInputField");
+		this.text = new JTextField("New home task",20);
+		this.text.setName("homeTaskInputField");
 		this.textLabel = new JLabel();
-		this.textLabel.setName("studyTaskTextLabel");
+		this.textLabel.setName("homeTaskTextLabel");
 		this.textLabel.setVisible(false);
 		JPanel center = new JPanel();
 		center.add(text);
@@ -59,11 +60,11 @@ public class StudyTask extends JPanel implements Task {
 		this.textLabel.addMouseListener(inputListener);
 		
 		JButton remove = new JButton("Remove");
-		remove.setName("removeStudyTask");
+		remove.setName("removeHomeTask");
 		add(remove,BorderLayout.EAST);
 		remove.addActionListener(inputListener);
 
-		completed.setName("studyTaskIsCompleted");
+		completed.setName("homeTaskIsCompleted");
 		add(completed,BorderLayout.WEST);
 		completed.addItemListener(inputListener);
 		
@@ -78,7 +79,7 @@ public class StudyTask extends JPanel implements Task {
 
 	@Override
 	public String getTaskType() {
-		return "Study";
+		return "Home";
 	}
 
 	@Override

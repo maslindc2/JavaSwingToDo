@@ -1,3 +1,4 @@
+package com.team4.demo.app;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
