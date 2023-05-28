@@ -81,6 +81,10 @@ public class StudyTask extends JPanel implements Task {
 		return "Study";
 	}
 
+	public JTextField getTextField(){ return this.text;	}
+
+	public JLabel getTextLabel(){ return this.textLabel; }
+
 	@Override
 	public void setTaskListener(TaskListener t) {
 		listener = t;		
