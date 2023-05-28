@@ -1,3 +1,4 @@
+package com.team4;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -68,8 +69,8 @@ public class ToDo implements TaskListener, ActionListener {
 		HomeTaskbutton.addActionListener(this);
 		StudyTaskbutton.addActionListener(this);
 		CustomTaskbutton.addActionListener(this);
-		// Because the original devs didn't set the names of the inputs we have to do it
-		// If assertJ tests throw not able to find item it's probably because the name was never setup for it
+		// Because the original devs didn't set the names of the inputs, we have to do it
+		// If assertJ tests throw not able to find item it's probably because the name was never setup for it,
 		// otherwise no testing framework could find the buttons
 		HomeTaskbutton.setName("HomeTaskbutton");
 		StudyTaskbutton.setName("StudyTaskbutton");
@@ -296,7 +297,6 @@ public class ToDo implements TaskListener, ActionListener {
 	 * @return String stating the total number of tasks created. This text is displayed to the user at the bottom of the program.
 	 */
 	public String getTotalTasksBottomText(){ return totalTasks.getText(); }
-
 
 	public JFrame getFrame(){return frame;}
 }

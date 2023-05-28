@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream:test/ToDoGUITest.java
 
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.StringAssert;
@@ -5,10 +6,31 @@ import org.assertj.swing.edt.GuiActionRunner;
 import org.assertj.swing.fixture.FrameFixture;
 import static org.assertj.swing.assertions.Assertions.assertThat;
 import org.assertj.swing.junit.testcase.AssertJSwingJUnitTestCase;
+=======
+package com.team4.demo.app;
+
+import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.api.StringAssert;
+import org.assertj.swing.edt.FailOnThreadViolationRepaintManager;
+import org.assertj.swing.edt.GuiActionRunner;
+import org.assertj.swing.fixture.FrameFixture;
+import static org.assertj.swing.assertions.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import org.assertj.swing.junit.testcase.AssertJSwingJUnitTestCase;
+import org.junit.BeforeClass;
+>>>>>>> Stashed changes:src/test/java/com/team4/demo/app/ToDoGUITest.java
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import java.awt.Color;
+<<<<<<< Updated upstream:test/ToDoGUITest.java
+=======
+import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+>>>>>>> Stashed changes:src/test/java/com/team4/demo/app/ToDoGUITest.java
 
 
 public class ToDoGUITest extends AssertJSwingJUnitTestCase {
@@ -50,10 +72,19 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
      * Work or CustomTask is Important check box is named "workTaskIsImportant"
      */
     private FrameFixture window;
+<<<<<<< Updated upstream:test/ToDoGUITest.java
     @Override
     protected void onSetUp(){
         ToDo todo = GuiActionRunner.execute(() -> new ToDo());
         window = new FrameFixture(robot(), todo.getFrame());
+=======
+    public ToDo todo;
+
+    @Override
+    protected void onSetUp(){
+        this.todo = GuiActionRunner.execute(() -> new ToDo());
+        window = new FrameFixture(robot(), this.todo.getFrame());
+>>>>>>> Stashed changes:src/test/java/com/team4/demo/app/ToDoGUITest.java
         window.show();
     }
 
@@ -81,6 +112,7 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(StudyTask.class);
     }
     @Test
+<<<<<<< Updated upstream:test/ToDoGUITest.java
     public void createTwoTasks_FirstTaskComplete_SortByCompleted_UnMarkCompletion_ReverseSorting(){
         // Click on "New StudyTask" button
         window.button("StudyTaskbutton").click();
@@ -100,6 +132,31 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         //Task order should return to its original state
         assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(CustomTask.class);
 
+=======
+    public void sortByTaskCompletion_createTwoTasksSetOneAsCompleteThenReverseTheCompletionSorting_UncompletedWorkTaskIsNowOnTop(){
+
+        // Click on "New WorkTask" button
+        window.button("WorkTaskbutton").click();
+
+        // Click on "New StudyTask" button
+        window.button("StudyTaskbutton").click();
+
+        // Click on the checkbox in Study task to mark it complete
+        window.checkBox("studyTaskIsCompleted").click();
+        // Click on the "Sorted Completed" button
+        window.button("sortByCompButton").click();
+
+        /**
+         * Use the assertJ assertion to check that the study task is now placed on top of the uncompleted Work task
+         * window.panel("taskPanel") finds the taskPanel where the created tasks are stored, we then attach .target() which
+         * gets the JPanel object, we then call getComponents() which returns an array of swing components that make up the taskPanel
+         * we then get the first index which is supposed to be the Study Task or whatever task is currently at the top of the task panel,
+         * we then use isInstanceOf to make sure it's a StudyTask.
+         */
+        assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(StudyTask.class);
+        window.button("sortByCompButton").click();
+        assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(CustomTask.class);
+>>>>>>> Stashed changes:src/test/java/com/team4/demo/app/ToDoGUITest.java
     }
     @Test
     public void sortByTaskType_createThreeTasksSortByType_NoChangeInTaskOrder(){
@@ -140,6 +197,7 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         });
     }
 
+<<<<<<< Updated upstream:test/ToDoGUITest.java
     // This test focuses on a failure we found during exploratory testing
     // where a deleted task would reappear after sorting
     @Test
@@ -151,6 +209,8 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         // assert that the taskPanel does not contain any rendered components
         assertThat(window.panel("taskPanel").target().getComponents().length).isEqualTo(0);
     }
+=======
+>>>>>>> Stashed changes:src/test/java/com/team4/demo/app/ToDoGUITest.java
     @Test
     public void createAndSortTasksAlphabetically_WorkTaskOnTopStudySecondHomeThird(){
         window.button("HomeTaskbutton").click();
@@ -185,6 +245,10 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         softly.assertThat(window.panel("taskPanel").target().getComponents()[1]).isInstanceOf(StudyTask.class);
         softly.assertThat(window.panel("taskPanel").target().getComponents()[2]).isInstanceOf(HomeTask.class);
     }
+<<<<<<< Updated upstream:test/ToDoGUITest.java
+=======
+    @Test
+>>>>>>> Stashed changes:src/test/java/com/team4/demo/app/ToDoGUITest.java
     public void createThreeTasksAndNameUsingALetterSortByAlphabetical_TasksAreSortedAlphabetically(){
         window.button("HomeTaskbutton").click();
         window.button("StudyTaskbutton").click();
@@ -224,10 +288,34 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
     }
 
     @Test
+<<<<<<< Updated upstream:test/ToDoGUITest.java
     public void checkBoxOnWorkTask_SetBackgroundColorOfTaskToRed() {
         window.button("WorkTaskbutton").click();
         window.checkBox("workTaskIsImportant").click();
         window.background().target().getRed();
+=======
+    public void importantCheckBoxOnWorkTaskChecked_SetsBackgroundColorOfTaskToRed_BackgroundIsRed() {
+        window.button("WorkTaskbutton").click();
+        window.checkBox("workTaskIsImportant").click();
+        assertThat(window.panel("taskPanel").target().getComponents()[0].getBackground()).isEqualTo(Color.red);
+    }
+
+    @Test
+    public void importantCheckBoxOnWorkTaskChecked_isImportantReturnsTrue() {
+        window.button("WorkTaskbutton").click();
+        window.checkBox("workTaskIsImportant").click();
+        CustomTask task = (CustomTask) todo.getTaskList().get(0);
+        assertThat(task.isImportant()).isTrue();
+    }
+
+    @Test
+    public void importantCheckBoxOnWorkTaskCheckedThenUnchecked_isImportantReturnsFalse() {
+        window.button("WorkTaskbutton").click();
+        window.checkBox("workTaskIsImportant").click();
+        window.checkBox("workTaskIsImportant").click();
+        CustomTask task = (CustomTask) todo.getTaskList().get(0);
+        assertThat(task.isImportant()).isFalse();
+>>>>>>> Stashed changes:src/test/java/com/team4/demo/app/ToDoGUITest.java
     }
 
     @Test
@@ -238,4 +326,8 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         window.checkBox("workTaskIsImportant").click();
         assertThat(window.panel("taskPanel").target().getComponents()[0].getBackground().getRGB()).isEqualTo(window.background().target().getRGB());
     }
+<<<<<<< Updated upstream:test/ToDoGUITest.java
 }
+=======
+}
+>>>>>>> Stashed changes:src/test/java/com/team4/demo/app/ToDoGUITest.java

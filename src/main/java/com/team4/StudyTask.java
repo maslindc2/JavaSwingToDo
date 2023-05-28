@@ -1,3 +1,4 @@
+package com.team4;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -79,6 +80,14 @@ public class StudyTask extends JPanel implements Task {
 	@Override
 	public String getTaskType() {
 		return "Study";
+	}
+
+	public JTextField getTextField(){
+		return this.text;
+	}
+
+	public JLabel getTextLabel(){
+		return this.textLabel;
 	}
 
 	@Override

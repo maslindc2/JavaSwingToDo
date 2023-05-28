@@ -1,6 +1,5 @@
+package com.team4;
 import java.util.Comparator;
-
-
 
 //this class is for sorting tasks in alphabetical order.
 public class TaskTextComparator implements Comparator {
