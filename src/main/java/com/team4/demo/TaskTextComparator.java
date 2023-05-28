@@ -1,4 +1,4 @@
-package com.team4;
+package com.team4.demo;
 import java.util.Comparator;
 
 //this class is for sorting tasks in alphabetical order.

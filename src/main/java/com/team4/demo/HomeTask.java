@@ -1,4 +1,4 @@
-package com.team4;
+package com.team4.demo;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;

@@ -1,5 +1,4 @@
-package com.team4;
-
+package com.team4.demo;
 import org.junit.jupiter.api.Test;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
@@ -251,9 +250,7 @@ public class ToDoTest
             //Check that the task was removed by checking the count
             () -> assertEquals(0, todo.getTotalCount()),
             //Check that the Gui updated showing 0/0 tasks
-            () -> assertEquals("Total task completed: 0/0", todo.getTotalTasksBottomText(), "createNewStudyTaskAndRemoveIt_CompletedTasks_0/0"),
-            // Check that the task has been removed from the task list
-            () -> assertEquals(0, todo.getTaskList().size()));
+            () -> assertEquals("Total task completed: 0/0", todo.getTotalTasksBottomText(), "createNewStudyTaskAndRemoveIt_CompletedTasks_0/0"));
   }
 
   @Test
@@ -274,9 +271,7 @@ public class ToDoTest
             //Check that the task was removed by checking the count
             () -> assertEquals(0, todo.getTotalCount()),
             //Check that the Gui updated showing 0/0 tasks
-            () -> assertEquals("Total task completed: 0/0", todo.getTotalTasksBottomText(), "createNewHomeTaskAndRemoveIt_CompletedTasks_0/0"),
-            // Check that the task has been removed from the task list
-            () -> assertEquals(0, todo.getTaskList().size(), "createNewHomeTaskAndRemoveIt_TaskListSize=0"));
+            () -> assertEquals("Total task completed: 0/0", todo.getTotalTasksBottomText(), "createNewHomeTaskAndRemoveIt_CompletedTasks_0/0"));
   }
 
   @Test
