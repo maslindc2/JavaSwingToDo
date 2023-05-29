@@ -103,4 +103,14 @@ public class HomeTask extends JPanel implements Task {
 		return this;
 	}
 
+	// The below getters were added for testing
+	public JTextField getTextField(){
+		return this.text;
+	}
+
+	public JLabel getTextLabel(){
+		return this.textLabel;
+	}
+
+
 }
