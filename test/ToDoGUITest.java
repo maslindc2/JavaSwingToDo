@@ -53,7 +53,7 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
      * Work or CustomTask is Important check box is named "workTaskIsImportant"
      */
     private FrameFixture window;
-    public ToDo todo;
+    public static ToDo todo;
 
     @Override
     protected void onSetUp() {
@@ -65,7 +65,7 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
     public static void screenshot(String testName){
         // Capture screenshot
         try {
-            Rectangle screenRect = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
+            Rectangle screenRect = todo.getFrame().getBounds();
             BufferedImage capture = new Robot().createScreenCapture(screenRect);
 
             // Create screenshots folder if it doesn't exist
