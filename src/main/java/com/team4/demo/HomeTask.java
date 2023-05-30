@@ -102,15 +102,4 @@ public class HomeTask extends JPanel implements Task {
 		// Since this class extends JPanel, it is itself a GUI component, and thus we can return "this". 
 		return this;
 	}
-
-	// The below getters were added for testing
-	public JTextField getTextField(){
-		return this.text;
-	}
-
-	public JLabel getTextLabel(){
-		return this.textLabel;
-	}
-
-
 }

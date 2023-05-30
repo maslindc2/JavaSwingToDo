@@ -139,13 +139,4 @@ public class CustomTask extends JPanel implements Task {
 	public Component getGuiComponent() {
 		return this;
 	}
-
-	// The below getters were added for testing
-	public JTextField getTextField(){
-		return this.text;
-	}
-
-	public JLabel getTextLabel(){
-		return this.textLabel;
-	}
 }
