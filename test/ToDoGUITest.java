@@ -101,7 +101,7 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
          * we then use isInstanceOf to make sure it's a StudyTask.
          */
 
-        //screenshot("sortByTaskCompletion_createTwoTasksSetOneAsComplete_CompletedStudyTaskIsNowOnTop");
+        screenshot("sortByTaskCompletion_createTwoTasksSetOneAsComplete_CompletedStudyTaskIsNowOnTop");
         assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(StudyTask.class);
     }
 
@@ -126,7 +126,7 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         // Click on the "Sorted Completed" button
         window.button("sortByCompButton").click();
 
-        //screenshot("createTwoTasks_FirstTaskComplete_SortByCompleted_UnMarkCompletion_ReverseSorting_WorkOnTop");
+        screenshot("createTwoTasks_FirstTaskComplete_SortByCompleted_UnMarkCompletion_ReverseSorting_WorkOnTop");
         assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(CustomTask.class);
     }
 
@@ -151,10 +151,10 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
          * we then get the first index which is supposed to be the Study Task or whatever task is currently at the top of the task panel,
          * we then use isInstanceOf to make sure it's a StudyTask.
          */
-        //screenshot("sortByTaskCompletion_createTwoTasksSetOneAsCompleteThenReverseTheCompletionSorting_UncompletedWorkTaskIsNowOnTop_Sorted");
+        screenshot("sortByTaskCompletion_createTwoTasksSetOneAsCompleteThenReverseTheCompletionSorting_UncompletedWorkTaskIsNowOnTop_Sorted");
         assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(StudyTask.class);
         window.button("sortByCompButton").click();
-        //screenshot("sortByTaskCompletion_createTwoTasksSetOneAsCompleteThenReverseTheCompletionSorting_UncompletedWorkTaskIsNowOnTop_Unsorted");
+        screenshot("sortByTaskCompletion_createTwoTasksSetOneAsCompleteThenReverseTheCompletionSorting_UncompletedWorkTaskIsNowOnTop_Unsorted");
         assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(CustomTask.class);
     }
 
@@ -170,7 +170,7 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
 
         // Click on the "Sorted Completed" button
         window.button("sortByTypeButton").click();
-        //screenshot("sortByTaskType_createThreeTasksSortByType_NoChangeInTaskOrder");
+        screenshot("sortByTaskType_createThreeTasksSortByType_NoChangeInTaskOrder");
         SoftAssertions.assertSoftly(softly -> {
             softly.assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(HomeTask.class);
             softly.assertThat(window.panel("taskPanel").target().getComponents()[1]).isInstanceOf(CustomTask.class);
@@ -190,7 +190,7 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         // Click on the "Sorted Completed" button
         window.button("sortByTypeButton").click();
 
-        //screenshot("sortByTaskType_createTwoStudyTasksOneWorkTask_WorkTaskOnTop");
+        screenshot("sortByTaskType_createTwoStudyTasksOneWorkTask_WorkTaskOnTop");
         SoftAssertions.assertSoftly(softly -> {
             softly.assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(CustomTask.class);
             softly.assertThat(window.panel("taskPanel").target().getComponents()[1]).isInstanceOf(StudyTask.class);
@@ -206,7 +206,7 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         window.button("removeStudyTask").click();
         window.button("sortByCompButton").click();
 
-        //screenshot("createOneTaskRemoveItSortByCompleted_NoTasksShouldRenderedOnTheGUI");
+        screenshot("createOneTaskRemoveItSortByCompleted_NoTasksShouldRenderedOnTheGUI");
         // assert that the taskPanel does not contain any rendered components
         assertThat(window.panel("taskPanel").target().getComponents().length).isEqualTo(0);
     }
@@ -222,7 +222,7 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         window.textBox("workTaskInputField").setText("A");
 
         window.button("sortByAlfButton").click();
-        //screenshot("createAndSortTasksAlphabetically_WorkTaskOnTopStudyTaskSecondHomeTaskThird");
+        screenshot("createAndSortTasksAlphabetically_WorkTaskOnTopStudyTaskSecondHomeTaskThird");
         SoftAssertions softly = new SoftAssertions();
         softly.assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(CustomTask.class);
         softly.assertThat(window.panel("taskPanel").target().getComponents()[1]).isInstanceOf(StudyTask.class);
@@ -240,7 +240,7 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         window.textBox("homeTaskInputField").setText("C");
 
         window.button("sortByAlfButton").click();
-        //screenshot("createAndSortTasksAlphabetically_NoChangeInOrder");
+        screenshot("createAndSortTasksAlphabetically_NoChangeInOrder");
         SoftAssertions softly = new SoftAssertions();
         softly.assertThat(window.panel("taskPanel").target().getComponents()[0]).isInstanceOf(CustomTask.class);
         softly.assertThat(window.panel("taskPanel").target().getComponents()[1]).isInstanceOf(StudyTask.class);
@@ -252,7 +252,7 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         window.button("WorkTaskbutton").click();
         window.checkBox("workTaskIsCompleted").click();
         window.label("totalTasksLabel").requireText("Total task completed: 1/1");
-        //screenshot("markWorkTaskComplete_TaskCompletedUpdatesToShow1of1TaskComplete");
+        screenshot("markWorkTaskComplete_TaskCompletedUpdatesToShow1of1TaskComplete");
     }
 
     @Test
@@ -260,7 +260,7 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         window.button("HomeTaskbutton").click();
         window.checkBox("homeTaskIsCompleted").click();
         window.label("totalTasksLabel").requireText("Total task completed: 1/1");
-        //screenshot("markHomeTaskComplete_TaskCompletedUpdatesToShow1of1TaskComplete");
+        screenshot("markHomeTaskComplete_TaskCompletedUpdatesToShow1of1TaskComplete");
     }
 
     @Test
@@ -268,14 +268,14 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         window.button("StudyTaskbutton").click();
         window.checkBox("studyTaskIsCompleted").click();
         window.label("totalTasksLabel").requireText("Total task completed: 1/1");
-        //screenshot("markStudyTaskComplete_TaskCompletedUpdatesToShow1of1TaskComplete");
+        screenshot("markStudyTaskComplete_TaskCompletedUpdatesToShow1of1TaskComplete");
     }
 
     @Test
     public void importantCheckBoxOnWorkTaskChecked_SetsBackgroundColorOfTaskToRed_BackgroundIsRed() {
         window.button("WorkTaskbutton").click();
         window.checkBox("workTaskIsImportant").click();
-        //screenshot("importantCheckBoxOnWorkTaskChecked_SetsBackgroundColorOfTaskToRed_BackgroundIsRed");
+        screenshot("importantCheckBoxOnWorkTaskChecked_SetsBackgroundColorOfTaskToRed_BackgroundIsRed");
         assertThat(window.panel("taskPanel").target().getComponents()[0].getBackground()).isEqualTo(Color.red);
     }
 
@@ -283,10 +283,10 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
     public void importantCheckBoxOnWorkTaskChecked_SetsBackgroundColorOfTaskToRed_UnMarkImportant_BackgroundReturnsToNormal() {
         window.button("WorkTaskbutton").click();
         window.checkBox("workTaskIsImportant").click();
-        //screenshot("importantCheckBoxOnWorkTaskChecked_SetsBackgroundColorOfTaskToRed_UnMarkImportant_BackgroundReturnsToNormal_RedBackground");
+        screenshot("importantCheckBoxOnWorkTaskChecked_SetsBackgroundColorOfTaskToRed_UnMarkImportant_BackgroundReturnsToNormal_RedBackground");
         assertThat(window.panel("taskPanel").target().getComponents()[0].getBackground()).isEqualTo(Color.red);
         window.checkBox("workTaskIsImportant").click();
-        //screenshot("importantCheckBoxOnWorkTaskChecked_SetsBackgroundColorOfTaskToRed_UnMarkImportant_BackgroundReturnsToNormal_NormalBackground");
+        screenshot("importantCheckBoxOnWorkTaskChecked_SetsBackgroundColorOfTaskToRed_UnMarkImportant_BackgroundReturnsToNormal_NormalBackground");
         assertThat(window.panel("taskPanel").target().getComponents()[0].getBackground().getRGB()).isEqualTo(window.background().target().getRGB());
     }
 
@@ -294,15 +294,15 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
     public void importantCheckBoxOnWorkTaskCheckedThenUnchecked_isImportantReturnsFalse() {
         window.button("WorkTaskbutton").click();
         CustomTask task = (CustomTask) todo.getTaskList().get(0);
-        //screenshot("importantCheckBoxOnWorkTaskCheckedThenUnchecked_isImportantReturnsFalse_CustomTaskLoaded");
+        screenshot("importantCheckBoxOnWorkTaskCheckedThenUnchecked_isImportantReturnsFalse_CustomTaskLoaded");
         assertThat(task.isImportant()).isFalse();
 
         window.checkBox("workTaskIsImportant").click();
-        //screenshot("importantCheckBoxOnWorkTaskCheckedThenUnchecked_isImportantReturnsFalse_ImportantIsChecked");
+        screenshot("importantCheckBoxOnWorkTaskCheckedThenUnchecked_isImportantReturnsFalse_ImportantIsChecked");
         assertThat(task.isImportant()).isTrue();
 
         window.checkBox("workTaskIsImportant").click();
-        //screenshot("importantCheckBoxOnWorkTaskCheckedThenUnchecked_isImportantReturnsFalse_ImportantIsUnchecked");
+        screenshot("importantCheckBoxOnWorkTaskCheckedThenUnchecked_isImportantReturnsFalse_ImportantIsUnchecked");
         assertThat(task.isImportant()).isFalse();
     }
 
@@ -317,7 +317,7 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         HomeTask homeTask = (HomeTask) todo.getTaskList().get(1);
         StudyTask studyTask = (StudyTask) todo.getTaskList().get(2);
 
-        //screenshot("completeCheckBoxOnAllTasksCheckedThenUnchecked_isCompleteReturnsFalse_InitializedSoNoTasksMarkedComplete");
+        screenshot("completeCheckBoxOnAllTasksCheckedThenUnchecked_isCompleteReturnsFalse_InitializedSoNoTasksMarkedComplete");
         // Since none of the tasks have been marked complete, this should return false
         assertThat(workTask.isComplete()).isFalse();
         assertThat(homeTask.isComplete()).isFalse();
@@ -327,7 +327,7 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         window.checkBox("homeTaskIsCompleted").click();
         window.checkBox("studyTaskIsCompleted").click();
 
-        //screenshot("completeCheckBoxOnAllTasksCheckedThenUnchecked_isCompleteReturnsFalse_InitializedSoNoTasksMarkedComplete_AllTasksMarkedComplete");
+        screenshot("completeCheckBoxOnAllTasksCheckedThenUnchecked_isCompleteReturnsFalse_InitializedSoNoTasksMarkedComplete_AllTasksMarkedComplete");
         //Since all the tasks have been marked complete, this should return true
         assertThat(workTask.isComplete()).isTrue();
         assertThat(homeTask.isComplete()).isTrue();
@@ -337,7 +337,7 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
         window.checkBox("homeTaskIsCompleted").click();
         window.checkBox("studyTaskIsCompleted").click();
 
-        //screenshot("completeCheckBoxOnAllTasksCheckedThenUnchecked_isCompleteReturnsFalse_InitializedSoNoTasksMarkedComplete_AllTasksUncheckedComplete");
+        screenshot("completeCheckBoxOnAllTasksCheckedThenUnchecked_isCompleteReturnsFalse_InitializedSoNoTasksMarkedComplete_AllTasksUncheckedComplete");
         //Since all the tasks have been unmarked complete, this should return false
         assertThat(workTask.isComplete()).isFalse();
         assertThat(homeTask.isComplete()).isFalse();
