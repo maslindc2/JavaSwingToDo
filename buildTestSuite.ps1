@@ -52,14 +52,16 @@ if ($testResults -clike "*ERROR*") {
 
 $smtpServer = "smtp.office365.com"                                  
 $smtpPort = 587                                                     
-$smtpUsername = "email for the account to send test results"
-$smtpPassword = "password for the account to send test results"
+$smtpUsername = "email address for the account send test results from"
+$smtpPassword = "password for the account to send test results from"
 $subject = "Team 4 Regression Results" 
 
 # If the tests set the body of the email to contain the build results and the test results
 # Else the tests have failed, set the body to show the build and test results and state which tests failed
 $body = ""
 if ($testPassFail -eq "True") {
+    $body = "Build Pass: " + $buildPassFail + "`n" + $buildResults + "`n" + "Test Pass: " + $testPassFail + "`n" + $testResults
+}elseif($buildPassFail -eq "False"){
     $body = "Build Pass: " + $buildPassFail + "`n" + $buildResults + "`n" + "Test Pass: " + $testPassFail + "`n" + $testResults
 }else {
     $body = "Build Pass: " + $buildPassFail + "`n" + $buildResults + "`n" + "Test Pass: " + $testPassFail + "`n" + $testResults + "`n" + "Below are the tests that failed" + "`n" +$testInternalSimplified + $testGUISimplified
