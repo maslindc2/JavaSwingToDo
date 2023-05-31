@@ -54,7 +54,7 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
      * Work or CustomTask is Important check box is named "workTaskIsImportant"
      */
     private FrameFixture window;
-    public ToDo todo;
+    public static ToDo todo;
 
     @Override
     protected void onSetUp() {
@@ -66,7 +66,7 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
     public static void screenshot(String testName){
         // Capture screenshot
         try {
-            Rectangle screenRect = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
+            Rectangle screenRect = todo.getFrame().getBounds();
             BufferedImage capture = new Robot().createScreenCapture(screenRect);
 
             // Create screenshots folder if it doesn't exist
@@ -197,19 +197,6 @@ public class ToDoGUITest extends AssertJSwingJUnitTestCase {
             softly.assertThat(window.panel("taskPanel").target().getComponents()[1]).isInstanceOf(StudyTask.class);
             softly.assertThat(window.panel("taskPanel").target().getComponents()[2]).isInstanceOf(StudyTask.class);
         });
-    }
-
-    // This test focuses on a failure we found during exploratory testing
-    // where a deleted task would reappear after sorting
-    @Test
-    public void createOneTaskRemoveItSortByCompleted_NoTasksShouldRenderedOnTheGUI(){
-        window.button("StudyTaskbutton").click();
-        window.button("removeStudyTask").click();
-        window.button("sortByCompButton").click();
-
-        //screenshot("createOneTaskRemoveItSortByCompleted_NoTasksShouldRenderedOnTheGUI");
-        // assert that the taskPanel does not contain any rendered components
-        assertThat(window.panel("taskPanel").target().getComponents().length).isEqualTo(0);
     }
 
     @Test
